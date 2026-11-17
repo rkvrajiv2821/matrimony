@@ -24,15 +24,16 @@ export function forbiddenOrigin(): NextResponse {
   );
 }
 
-/** Relay an API response (status + JSON body) to the browser. */
+const RELAYED_HEADERS = ["content-type", "retry-after", "cache-control", "content-disposition"];
+
+/** Relay an API response to the browser byte-for-byte (JSON or binary, e.g. photos). */
 export async function relay(res: Response): Promise<NextResponse> {
   if (res.status === 204) return new NextResponse(null, { status: 204 });
-  const body = await res.text();
-  const out = new NextResponse(body, {
-    status: res.status,
-    headers: { "content-type": res.headers.get("content-type") ?? "application/json" },
-  });
-  const retry = res.headers.get("retry-after");
-  if (retry) out.headers.set("retry-after", retry);
+  const out = new NextResponse(res.body, { status: res.status });
+  for (const name of RELAYED_HEADERS) {
+    const value = res.headers.get(name);
+    if (value) out.headers.set(name, value);
+  }
+  if (!out.headers.has("content-type")) out.headers.set("content-type", "application/json");
   return out;
 }
