@@ -1,0 +1,78 @@
+# Local development stack. NOT a production topology (see docs/PLAN.md §3 and PRD §15).
+#   docker compose up --build
+#   web: http://localhost:3000   api docs: http://localhost:8000/docs   mail: http://localhost:8025
+name: vaibhav
+
+x-api-env: &api-env
+  VAIBHAV_ENV: local
+  VAIBHAV_DATABASE_URL: mysql+asyncmy://vaibhav:vaibhav@mysql:3306/vaibhav?charset=utf8mb4
+  VAIBHAV_REDIS_URL: redis://redis:6379/0
+  VAIBHAV_CORS_ORIGINS: http://localhost:3000
+  VAIBHAV_OTP_DEBUG_ECHO: "true"
+  VAIBHAV_TRUSTED_PROXY_COUNT: "1"
+
+services:
+  mysql:
+    image: mysql:8.4
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci", "--sql-mode=STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"]
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vaibhav
+      MYSQL_USER: vaibhav
+      MYSQL_PASSWORD: vaibhav
+    ports: ["3306:3306"]
+    volumes: [mysql-data:/var/lib/mysql]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-proot", "--silent"]
+      interval: 5s
+      retries: 30
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+
+  # Private object storage for photos/documents (used from Phase 2).
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: vaibhav
+      MINIO_ROOT_PASSWORD: vaibhav-dev-secret
+    ports: ["9000:9000", "9001:9001"]
+    volumes: [minio-data:/data]
+
+  # Catches outgoing email in development.
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ["8025:8025", "1025:1025"]
+
+  migrate:
+    build: services/api
+    command: ["alembic", "upgrade", "head"]
+    environment: *api-env
+    depends_on:
+      mysql: { condition: service_healthy }
+
+  api:
+    build: services/api
+    environment: *api-env
+    ports: ["8000:8000"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      VAIBHAV_API_INTERNAL_URL: http://api:8000
+    ports: ["3000:3000"]
+    depends_on: [api]
+
+volumes:
+  mysql-data:
+  minio-data:

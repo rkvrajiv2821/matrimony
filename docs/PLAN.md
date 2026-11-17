@@ -3,7 +3,18 @@
 Source documents: [`prd/PRD_v1.0_Complete.pdf`](prd/PRD_v1.0_Complete.pdf) (baseline) and
 [`prd/PRD_v1.1_Update.pdf`](prd/PRD_v1.1_Update.pdf) (name + dormant monetization; overrides v1.0 where they conflict).
 
-Status: **Planning — awaiting answers to §9 before Phase 1 starts.**
+Status: **Phase 1 (Foundation) complete** — running on the §9 defaults. Next: Phase 2 (Profiles).
+
+### Phase 1 delivered
+- API: OTP auth (Redis challenges, hashed codes, cooldown / hourly / attempt limits, single use, no account enumeration),
+  sessions with refresh rotation + reuse detection, consent capture & history, roles, immutable audit log,
+  feature flags (`monetization_enabled=false`), entitlements service with the seeded `free` plan, health checks.
+- Web: en / ta / Tanglish (`/en`, `/ta`, `/tanglish`), public site shell, login (phone → OTP), dashboard, settings
+  (display language, logged-in devices, log out everywhere). Tokens live only in httpOnly cookies (ADR 0001).
+- Quality: 46 API tests (real MySQL, migrations down/up), i18n parity tests, 28 Playwright E2E tests
+  (desktop + mobile, all three languages), strict mypy, ruff, ESLint, CI workflow, Dockerfiles, docker-compose.
+- Deferred by design: admin MFA (Phase 5), nonce-based CSP (Phase 7), real SMS provider (needs decision §9.3),
+  email verification (needs email provider).
 
 ---
 

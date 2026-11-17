@@ -1,0 +1,158 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  VAIBHAV_ENV: test
+  VAIBHAV_DATABASE_URL: mysql+asyncmy://vaibhav:vaibhav@127.0.0.1:3306/vaibhav_test?charset=utf8mb4
+  VAIBHAV_REDIS_URL: redis://127.0.0.1:6379/15
+
+jobs:
+  api:
+    name: API (lint, types, migrations, tests)
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: vaibhav_test
+          MYSQL_USER: vaibhav
+          MYSQL_PASSWORD: vaibhav
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd "mysqladmin ping -uroot -proot --silent"
+          --health-interval 5s --health-retries 30
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+    defaults:
+      run:
+        working-directory: services/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Ruff
+        run: uv run ruff check . && uv run ruff format --check .
+      - name: Mypy (strict)
+        run: uv run mypy app
+      - name: Migrations apply and match the models
+        run: uv run alembic upgrade head && uv run alembic check
+      - name: Tests (migrations down/up + full suite)
+        run: uv run pytest -q
+      - name: OpenAPI client is up to date
+        run: |
+          uv run python -m app.cli export-openapi > ../../packages/api-client/openapi.json
+          git diff --exit-code -- ../../packages/api-client/openapi.json
+
+  web:
+    name: Web (lint, types, i18n, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Localization parity (en / ta / Tanglish)
+        run: pnpm --filter @vaibhav/localization test
+      - name: Generated API types are up to date
+        run: |
+          pnpm --filter @vaibhav/api-client generate
+          git diff --exit-code -- packages/api-client/src/schema.d.ts
+      - run: pnpm --filter @vaibhav/api-client typecheck
+      - run: pnpm --filter @vaibhav/web lint
+      - run: pnpm --filter @vaibhav/web typecheck
+      - run: pnpm --filter @vaibhav/web build
+
+  e2e:
+    name: End-to-end (register → OTP → dashboard, 3 languages)
+    runs-on: ubuntu-latest
+    needs: [api, web]
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: vaibhav_test
+          MYSQL_USER: vaibhav
+          MYSQL_PASSWORD: vaibhav
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd "mysqladmin ping -uroot -proot --silent"
+          --health-interval 5s --health-retries 30
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+    env:
+      VAIBHAV_OTP_DEBUG_ECHO: "true"
+      VAIBHAV_TRUSTED_PROXY_COUNT: "1"
+      VAIBHAV_OTP_RESEND_COOLDOWN_SECONDS: "1"
+      VAIBHAV_OTP_MAX_REQUESTS_PER_IP_PER_HOUR: "10000"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Start API
+        working-directory: services/api
+        run: |
+          uv sync --frozen
+          uv run alembic upgrade head
+          nohup uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 > /tmp/api.log 2>&1 &
+      - name: Build and start web
+        run: |
+          pnpm --filter @vaibhav/web build
+          cp -r apps/web/.next/static apps/web/.next/standalone/apps/web/.next/
+          PORT=3000 HOSTNAME=127.0.0.1 nohup node apps/web/.next/standalone/apps/web/server.js > /tmp/web.log 2>&1 &
+          npx --yes wait-on --timeout 60000 http://127.0.0.1:8000/health http://127.0.0.1:3000/en
+      - run: pnpm --filter @vaibhav/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @vaibhav/web test:e2e
+      - if: failure()
+        run: tail -n 200 /tmp/api.log /tmp/web.log
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7
+
+  docker:
+    name: Container images build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t vaibhav-api services/api
+      - run: docker build -t vaibhav-web -f apps/web/Dockerfile .
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
