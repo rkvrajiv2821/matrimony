@@ -115,10 +115,11 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Start API
+      - name: Start S3 emulator and API
         working-directory: services/api
         run: |
           uv sync --frozen
+          nohup uv run moto_server -H 127.0.0.1 -p 9000 > /tmp/s3.log 2>&1 &
           uv run alembic upgrade head
           nohup uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 > /tmp/api.log 2>&1 &
       - name: Build and start web

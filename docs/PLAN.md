@@ -3,7 +3,25 @@
 Source documents: [`prd/PRD_v1.0_Complete.pdf`](prd/PRD_v1.0_Complete.pdf) (baseline) and
 [`prd/PRD_v1.1_Update.pdf`](prd/PRD_v1.1_Update.pdf) (name + dormant monetization; overrides v1.0 where they conflict).
 
-Status: **Phase 1 (Foundation) complete** — running on the §9 defaults. Next: Phase 2 (Profiles).
+Status: **Phases 1–2 complete** — running on the §9 defaults with a **placeholder community**. Next: Phase 3 (Discovery).
+
+### Phase 2 delivered
+- Reference data: 38 Tamil Nadu districts + 52 cities (English/Tamil names), nearby states, diaspora countries;
+  placeholder community taxonomy (`launch_community` with sub-groups A/B/C) — replace labels once confirmed.
+- Profile wizard (8 steps, save & resume, completion meter): basic, community, education, career, family,
+  lifestyle, photos, partner preferences (must-have / preferred / flexible). 18+ enforced server-side; contact
+  details refused in free text; location hierarchy validated.
+- Status machine: draft → submitted → approved / needs-changes (with reason + note); material edits to a live
+  profile trigger re-review; pause / resume; full status history + audit.
+- Photos: presigned upload to private storage, signature check + decode + re-encode (EXIF/GPS stripped),
+  thumbnails, originals deleted, per-photo visibility, moderation; served only to permitted viewers.
+- Family delegation: relatives can only create a profile with the adult's OTP-verified consent; the adult chooses
+  the relative's scope and can revoke; owners can invite up to 3 helpers.
+- Member view / preview never exposes DOB, full name, phone or fields hidden by the member.
+- Moderation API (queue, audited review, approve / request changes, photo decisions, conflict-of-interest guard)
+  + `app.cli moderation-queue` / `approve-profile`. The admin portal UI is Phase 5.
+- Tests: 78 API tests (MySQL + S3 emulator), option-label coverage across 3 languages, 42 Playwright tests ×
+  desktop/mobile.
 
 ### Phase 1 delivered
 - API: OTP auth (Redis challenges, hashed codes, cooldown / hourly / attempt limits, single use, no account enumeration),

@@ -29,7 +29,7 @@ Web: http://localhost:3000 · API docs: http://localhost:8000/docs · Mail catch
 
 ### Option B — native (faster inner loop)
 
-Prerequisites: Python 3.13 + [uv](https://docs.astral.sh/uv/), Node 22 + pnpm 10, MySQL 8 and Redis (e.g. `docker compose up mysql redis`).
+Prerequisites: Python 3.13 + [uv](https://docs.astral.sh/uv/), Node 22 + pnpm 10, MySQL 8, Redis and S3-compatible storage (e.g. `docker compose up mysql redis minio`; or run `uv run moto_server -p 9000` in `services/api` as a lightweight S3 stand-in).
 
 ```bash
 pnpm install
@@ -58,13 +58,25 @@ Register through the web app first, then:
 cd services/api && uv run python -m app.cli grant-role +919876543210 super_admin
 ```
 
+### Review profiles locally
+
+Submitted profiles wait for moderation. Until the admin portal (Phase 5) exists:
+
+```bash
+cd services/api && uv run python -m app.cli moderation-queue
+```
+
+```bash
+cd services/api && uv run python -m app.cli approve-profile <profile-id>
+```
+
 ## Tests
 
 ```bash
 cd services/api && uv run pytest
 ```
 
-API tests need MySQL (database `vaibhav_test`, user `vaibhav`) and Redis; they run the real migrations down and up first.
+API tests need MySQL (database `vaibhav_test`, user `vaibhav`) and Redis; they run the real migrations down and up first and start an in-process S3 emulator for photo tests.
 
 ```bash
 pnpm --filter @vaibhav/localization test

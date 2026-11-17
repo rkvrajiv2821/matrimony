@@ -10,6 +10,9 @@ x-api-env: &api-env
   VAIBHAV_CORS_ORIGINS: http://localhost:3000
   VAIBHAV_OTP_DEBUG_ECHO: "true"
   VAIBHAV_TRUSTED_PROXY_COUNT: "1"
+  VAIBHAV_STORAGE_ENDPOINT_URL: http://minio:9000
+  VAIBHAV_STORAGE_ACCESS_KEY: vaibhav
+  VAIBHAV_STORAGE_SECRET_KEY: vaibhav-dev-secret
 
 services:
   mysql:
@@ -63,6 +66,7 @@ services:
     depends_on:
       migrate: { condition: service_completed_successfully }
       redis: { condition: service_healthy }
+      minio: { condition: service_started }
 
   web:
     build:
