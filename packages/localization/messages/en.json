@@ -1,0 +1,148 @@
+{
+  "common": {
+    "brand": "VAIBHAV",
+    "tagline": "Trusted Tamil matrimony, free for every family",
+    "skipToContent": "Skip to main content",
+    "language": "Language",
+    "languages": { "en": "English", "ta": "தமிழ்", "ta-Latn": "Tanglish" },
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "howItWorks": "How it works",
+      "safety": "Safety",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "login": "Log in",
+      "register": "Register free",
+      "dashboard": "My VAIBHAV",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+    "footer": {
+      "terms": "Terms of Use",
+      "privacy": "Privacy Notice",
+      "eligibility": "Community eligibility",
+      "rights": "© {year} VAIBHAV. All rights reserved.",
+      "free": "VAIBHAV is free. We never charge for search, interests or messaging."
+    },
+    "loading": "Loading…",
+    "back": "Back",
+    "draftNotice": "Draft content — pending review before launch."
+  },
+  "home": {
+    "title": "Find a life partner with trust and respect",
+    "subtitle": "A marriage-focused matrimony service for Tamil families in Tamil Nadu. Create a profile, discover compatible matches and talk safely — completely free.",
+    "ctaPrimary": "Register free",
+    "ctaSecondary": "How it works",
+    "pillars": {
+      "freeTitle": "Free for everyone",
+      "freeBody": "Search, interests and messaging are free for every member. No paid boosts, no hidden ranking.",
+      "safeTitle": "Privacy first",
+      "safeBody": "Your phone number, exact birth date and documents stay private. You decide who sees your photos.",
+      "verifiedTitle": "Moderated profiles",
+      "verifiedBody": "Every profile is reviewed before it appears. Badges say exactly what was checked.",
+      "familyTitle": "Family friendly",
+      "familyBody": "Parents can help manage a profile — only with the consent of the person getting married."
+    },
+    "stepsTitle": "How VAIBHAV works",
+    "steps": {
+      "one": "Register with your mobile number",
+      "two": "Create your profile and partner preferences",
+      "three": "Discover matches with clear reasons",
+      "four": "Send interest and chat once both agree"
+    }
+  },
+  "auth": {
+    "loginTitle": "Log in or register",
+    "loginSubtitle": "Enter your mobile number. We'll send a one-time code.",
+    "phoneLabel": "Mobile number",
+    "phoneHint": "Indian numbers can be entered without +91.",
+    "phonePlaceholder": "98765 43210",
+    "consentTerms": "I am 18 or older and I agree to the <terms>Terms of Use</terms> and <privacy>Privacy Notice</privacy>.",
+    "consentMarketing": "Send me occasional updates about VAIBHAV (optional).",
+    "sendCode": "Send code",
+    "sending": "Sending…",
+    "otpTitle": "Enter the code",
+    "otpSubtitle": "We sent a 6-digit code to {phone}.",
+    "otpLabel": "One-time code",
+    "verify": "Verify and continue",
+    "verifying": "Verifying…",
+    "resend": "Resend code",
+    "resendIn": "Resend in {seconds}s",
+    "changeNumber": "Change number",
+    "devCode": "Development code: {code}",
+    "neverShare": "VAIBHAV staff will never ask for this code. Do not share it with anyone."
+  },
+  "dashboard": {
+    "welcomeNew": "Welcome to VAIBHAV!",
+    "welcomeBack": "Welcome back",
+    "nextStepTitle": "Next: create your profile",
+    "nextStepBody": "The profile wizard is coming in the next release. Your account is ready.",
+    "accountTitle": "Your account",
+    "phone": "Mobile",
+    "verified": "Verified",
+    "memberSince": "Member since {date}"
+  },
+  "settings": {
+    "title": "Settings",
+    "languageTitle": "Display language",
+    "languageBody": "Choose how VAIBHAV appears to you. Tanglish is Tamil written in English letters.",
+    "save": "Save",
+    "saved": "Saved",
+    "sessionsTitle": "Logged-in devices",
+    "sessionsBody": "Log out of devices you don't recognise.",
+    "thisDevice": "This device",
+    "lastActive": "Last active {date}",
+    "unknownDevice": "Unknown device",
+    "logoutDevice": "Log out",
+    "logoutAll": "Log out of all devices"
+  },
+  "pages": {
+    "about": {
+      "title": "About VAIBHAV",
+      "body": "VAIBHAV is a free, marriage-oriented matrimony platform for Tamil families. We focus on respectful introductions, transparent matching and strong privacy controls."
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "body": "Register with your mobile number, complete your profile, set partner preferences and discover matches. When both of you accept an interest, you can chat safely inside VAIBHAV."
+    },
+    "safety": {
+      "title": "Safety centre",
+      "body": "Never send money to anyone you meet online. Never share your OTP. Report anyone who pressures you to move off the platform or asks for money. You can block and report any profile at any time."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "body": "Is VAIBHAV free? Yes — registration, search, interests and messaging are free for every member."
+    },
+    "contact": {
+      "title": "Contact us",
+      "body": "Support contact details will be published before launch."
+    },
+    "eligibility": {
+      "title": "Community eligibility",
+      "body": "VAIBHAV launches for a specific Tamil community. Eligibility details will be published once approved."
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "body": "The Terms of Use are being finalised with legal counsel and will be published before launch."
+    },
+    "privacy": {
+      "title": "Privacy Notice",
+      "body": "The Privacy Notice is being finalised with legal counsel and will be published before launch."
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Could not reach VAIBHAV. Check your connection and try again.",
+    "invalid_phone": "Enter a valid mobile number.",
+    "otp_cooldown": "Please wait before requesting a new code.",
+    "rate_limited": "Too many attempts. Please try again later.",
+    "otp_invalid": "That code is incorrect.",
+    "otp_expired": "This code has expired. Please request a new one.",
+    "otp_too_many_attempts": "Too many incorrect attempts. Please request a new code.",
+    "consent_required": "Please accept the Terms of Use and Privacy Notice to continue.",
+    "account_inactive": "This account is not available. Please contact support.",
+    "validation_error": "Please check the highlighted fields.",
+    "session_expired": "Your session has ended. Please log in again."
+  }
+}

@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "@vaibhav/design-system/tokens.css";
+
+@theme inline {
+  --color-bg: var(--vb-bg);
+  --color-surface: var(--vb-surface);
+  --color-ink: var(--vb-text);
+  --color-muted: var(--vb-text-muted);
+  --color-subtle: var(--vb-ink-500);
+  --color-line: var(--vb-line);
+  --color-primary: var(--vb-primary);
+  --color-primary-hover: var(--vb-primary-hover);
+  --color-primary-soft: var(--vb-maroon-100);
+  --color-accent: var(--vb-accent);
+  --color-accent-soft: var(--vb-gold-100);
+  --color-gold: var(--vb-gold-500);
+  --color-danger: var(--vb-danger);
+  --color-danger-soft: var(--vb-danger-bg);
+  --color-success: var(--vb-success);
+  --color-success-soft: var(--vb-success-bg);
+  --radius-card: var(--vb-radius);
+  --radius-card-lg: var(--vb-radius-lg);
+  --shadow-card: var(--vb-shadow);
+  --font-sans: var(--font-inter), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif), var(--font-noto-serif-tamil), ui-serif, Georgia, serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--vb-bg);
+  color: var(--vb-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Tamil script needs extra line height for vowel signs. */
+:lang(ta-IN) body,
+:lang(ta-IN) {
+  line-height: 1.75;
+}
+
+:focus-visible {
+  outline: 3px solid var(--vb-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

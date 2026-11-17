@@ -1,0 +1,49 @@
+/*
+ * VAIBHAV design tokens — PROVISIONAL (PRD v1.1 §1: maroon / ivory / muted gold pending brand approval).
+ * All pairs below meet WCAG 2.2 AA contrast for normal text on their intended surfaces.
+ */
+:root {
+  /* Brand */
+  --vb-maroon-900: #4a0e1c;
+  --vb-maroon-800: #5e1325;
+  --vb-maroon-700: #7a1a30; /* primary — 9.6:1 on ivory */
+  --vb-maroon-600: #94243d;
+  --vb-maroon-100: #f6e4e7;
+  --vb-gold-700: #7d5a14; /* gold text on ivory — 5.6:1 */
+  --vb-gold-500: #b8913a; /* decorative only */
+  --vb-gold-100: #f5ecd6;
+
+  /* Neutrals (warm) */
+  --vb-ivory-50: #fffdf8;
+  --vb-ivory-100: #fbf6ec;
+  --vb-ivory-200: #f1e9d9;
+  --vb-ink-900: #24191b;
+  --vb-ink-700: #4b3f41; /* secondary text — 9.4:1 on ivory */
+  --vb-ink-500: #75686a; /* tertiary text — 4.9:1 on ivory */
+  --vb-line: #e4d8c4;
+
+  /* Feedback */
+  --vb-danger: #a3221d;
+  --vb-danger-bg: #fbe9e7;
+  --vb-success: #2f6b3a;
+  --vb-success-bg: #e8f3ea;
+  --vb-info-bg: #f5ecd6;
+
+  /* Semantic */
+  --vb-bg: var(--vb-ivory-100);
+  --vb-surface: var(--vb-ivory-50);
+  --vb-text: var(--vb-ink-900);
+  --vb-text-muted: var(--vb-ink-700);
+  --vb-primary: var(--vb-maroon-700);
+  --vb-primary-hover: var(--vb-maroon-800);
+  --vb-on-primary: #ffffff;
+  --vb-accent: var(--vb-gold-700);
+  --vb-focus: #1d4ed8;
+
+  /* Shape & rhythm */
+  --vb-radius-sm: 6px;
+  --vb-radius: 12px;
+  --vb-radius-lg: 20px;
+  --vb-shadow: 0 1px 2px rgb(36 25 27 / 0.06), 0 4px 16px rgb(36 25 27 / 0.06);
+  --vb-touch: 44px; /* minimum touch target */
+}

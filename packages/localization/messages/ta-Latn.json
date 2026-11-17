@@ -1,0 +1,148 @@
+{
+  "common": {
+    "brand": "VAIBHAV",
+    "tagline": "Nambikkaiyaana Tamil thirumana sevai, ovvoru kudumbathukkum free",
+    "skipToContent": "Main content-ku sellavum",
+    "language": "Mozhi",
+    "languages": { "en": "English", "ta": "தமிழ்", "ta-Latn": "Tanglish" },
+    "nav": {
+      "home": "Mugappu",
+      "about": "Engalai patri",
+      "howItWorks": "Eppadi velai seiyudhu",
+      "safety": "Paadhugaappu",
+      "faq": "Kelvigal",
+      "contact": "Thodarbu",
+      "login": "Login",
+      "register": "Free-aa register pannunga",
+      "dashboard": "En VAIBHAV",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "footer": {
+      "terms": "Payanpaattu vidhimuraigal",
+      "privacy": "Thaniyurimai arivippu",
+      "eligibility": "Samooga thagudhi",
+      "rights": "© {year} VAIBHAV. Ella urimaigalum paadhugaakkappattavai.",
+      "free": "VAIBHAV free. Search, interest, message-ku naangal eppovum kattanam vaanguvadhillai."
+    },
+    "loading": "Load aagudhu…",
+    "back": "Pinnaal",
+    "draftNotice": "Draft content — launch-ku munnaadi review pending."
+  },
+  "home": {
+    "title": "Nambikkaiyodum mariyaadhaiyodum vaazhkkai thunaiyai kandupidiyungal",
+    "subtitle": "Tamil Nadu Tamil kudumbangalukkaana thirumana sevai. Profile create pannunga, porutthamaana varangalai kandupidiyunga, safe-aa pesunga — muzhusaa free.",
+    "ctaPrimary": "Free-aa register pannunga",
+    "ctaSecondary": "Eppadi velai seiyudhu",
+    "pillars": {
+      "freeTitle": "Ellaarukkum free",
+      "freeBody": "Search, interest, message ellaame ovvoru member-kkum free. Paid boost illa, hidden ranking illa.",
+      "safeTitle": "Privacy-ku mudhal idam",
+      "safeBody": "Unga phone number, sariyaana pirandha thedhi, documents ellaam private-aave irukkum. Unga photos-a yaar paakkalaam-nu neenga dhaan mudivu seiyanum.",
+      "verifiedTitle": "Review panna profiles",
+      "verifiedBody": "Ovvoru profile-um publish aagura munnaadi review pannappadum. Enna check pannom-nu badges theliva sollum.",
+      "familyTitle": "Kudumbathukku etradhu",
+      "familyBody": "Kalyaanam pannikkapporavanga oppudhal irundhaal mattum dhaan parents profile-a manage panna udhavalaam."
+    },
+    "stepsTitle": "VAIBHAV eppadi velai seiyudhu",
+    "steps": {
+      "one": "Unga mobile number-oda register pannunga",
+      "two": "Unga profile-um partner preferences-um create pannunga",
+      "three": "Theliva kaaranangaloda matches kandupidiyunga",
+      "four": "Interest anuppunga; rendu perum ok sonnaa chat pannunga"
+    }
+  },
+  "auth": {
+    "loginTitle": "Login illa register pannunga",
+    "loginSubtitle": "Unga mobile number kudunga. Oru one-time code anuppuvom.",
+    "phoneLabel": "Mobile number",
+    "phoneHint": "Indian numbers-a +91 illaamale kudukkalaam.",
+    "phonePlaceholder": "98765 43210",
+    "consentTerms": "Enakku 18 vayasu illa adhukku mela, <terms>Terms of Use</terms> matrum <privacy>Privacy Notice</privacy>-a ettukkaren.",
+    "consentMarketing": "VAIBHAV pathi appappo updates anuppunga (optional).",
+    "sendCode": "Code anuppu",
+    "sending": "Anuppudhu…",
+    "otpTitle": "Code-a enter pannunga",
+    "otpSubtitle": "{phone}-ku 6 digit code anuppirukkom.",
+    "otpLabel": "One-time code",
+    "verify": "Verify panni continue pannunga",
+    "verifying": "Verify aagudhu…",
+    "resend": "Code thirumba anuppu",
+    "resendIn": "{seconds} second-la thirumba anuppalaam",
+    "changeNumber": "Number maathu",
+    "devCode": "Development code: {code}",
+    "neverShare": "VAIBHAV staff indha code-a eppovum kekka maattaanga. Yaar kittayum share pannaadheenga."
+  },
+  "dashboard": {
+    "welcomeNew": "VAIBHAV-ku varaverkirom!",
+    "welcomeBack": "Thirumba varuga",
+    "nextStepTitle": "Adutthu: unga profile create pannunga",
+    "nextStepBody": "Profile wizard adutha release-la varudhu. Unga account ready.",
+    "accountTitle": "Unga account",
+    "phone": "Mobile",
+    "verified": "Verified",
+    "memberSince": "{date} mudhal member"
+  },
+  "settings": {
+    "title": "Settings",
+    "languageTitle": "Display mozhi",
+    "languageBody": "VAIBHAV ungalukku eppadi theriyanum-nu select pannunga. Tanglish-na English ezhutthula ezhudhura Tamil.",
+    "save": "Save",
+    "saved": "Save aachu",
+    "sessionsTitle": "Login aana devices",
+    "sessionsBody": "Ungalukku theriyaadha devices-la irundhu logout pannunga.",
+    "thisDevice": "Indha device",
+    "lastActive": "Kadaisiya active {date}",
+    "unknownDevice": "Theriyaadha device",
+    "logoutDevice": "Logout",
+    "logoutAll": "Ella devices-layum logout"
+  },
+  "pages": {
+    "about": {
+      "title": "VAIBHAV pathi",
+      "body": "VAIBHAV Tamil kudumbangalukkaana free, kalyaana nokkudaiya platform. Mariyaadhaiyaana arimugangal, transparent matching, strong privacy controls — idhula dhaan engal kavanam."
+    },
+    "howItWorks": {
+      "title": "Eppadi velai seiyudhu",
+      "body": "Mobile number-oda register panni, profile-a complete panni, partner preferences set panni, matches kandupidiyunga. Rendu perum interest-a accept pannaa VAIBHAV-kulla safe-aa chat pannalaam."
+    },
+    "safety": {
+      "title": "Safety centre",
+      "body": "Online-la sandhikkura yaarukkum panam anuppaadheenga. Unga OTP-a eppovum share pannaadheenga. Platform-ku veliya pesa pressure kudukkuravanga illa panam kekkuravangala report pannunga. Endha profile-aiyum eppo venumnaalum block, report pannalaam."
+    },
+    "faq": {
+      "title": "Adikkadi kekkura kelvigal",
+      "body": "VAIBHAV free-aa? Aamaa — register, search, interest, message ellaame ovvoru member-kkum free."
+    },
+    "contact": {
+      "title": "Engala thodarbu kollunga",
+      "body": "Support contact details launch-ku munnaadi publish aagum."
+    },
+    "eligibility": {
+      "title": "Samooga thagudhi",
+      "body": "VAIBHAV oru kurippitta Tamil samoogathukkaaga launch aagudhu. Approval kidaichadhum thagudhi details publish aagum."
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "body": "Terms of Use legal counsel-oda finalise aagittu irukku; launch-ku munnaadi publish aagum."
+    },
+    "privacy": {
+      "title": "Privacy Notice",
+      "body": "Privacy Notice legal counsel-oda finalise aagittu irukku; launch-ku munnaadi publish aagum."
+    }
+  },
+  "errors": {
+    "generic": "Edho thappu nadandhudichu. Thirumba try pannunga.",
+    "network": "VAIBHAV-a reach panna mudiyala. Connection-a check panni thirumba try pannunga.",
+    "invalid_phone": "Sariyaana mobile number kudunga.",
+    "otp_cooldown": "Pudhu code kekkuradhukku munnaadi konjam wait pannunga.",
+    "rate_limited": "Romba attempts. Konja neram kazhichu try pannunga.",
+    "otp_invalid": "Andha code thappu.",
+    "otp_expired": "Indha code expire aagiduchu. Pudhusa kelunga.",
+    "otp_too_many_attempts": "Romba thappaana attempts. Pudhu code kelunga.",
+    "consent_required": "Continue panna Terms of Use matrum Privacy Notice-a accept pannunga.",
+    "account_inactive": "Indha account available illa. Support-a contact pannunga.",
+    "validation_error": "Highlight aana fields-a check pannunga.",
+    "session_expired": "Unga session mudinjiduchu. Thirumba login pannunga."
+  }
+}
