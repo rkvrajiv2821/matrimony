@@ -43,6 +43,17 @@ class Settings(BaseSettings):
 
     trusted_proxy_count: int = Field(default=0, ge=0)
 
+    # S3-compatible private object storage (MinIO locally, S3 or equivalent in production).
+    storage_endpoint_url: str | None = "http://127.0.0.1:9000"
+    storage_region: str = "ap-south-1"
+    storage_bucket: str = "vaibhav-private"
+    storage_access_key: SecretStr = SecretStr("vaibhav")
+    storage_secret_key: SecretStr = SecretStr("vaibhav-dev-secret")
+    storage_create_bucket: bool = True  # local/test convenience only
+    upload_url_ttl_seconds: int = 600
+    photo_max_bytes: int = 8 * 1024 * 1024
+    photo_max_count: int = 6
+
     @model_validator(mode="after")
     def _guard_production(self) -> "Settings":
         if self.env in ("staging", "production"):

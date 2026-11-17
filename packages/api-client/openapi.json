@@ -1,6 +1,63 @@
 {
   "components": {
     "schemas": {
+      "AcceptIn": {
+        "properties": {
+          "scopes": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Scope"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scopes"
+          }
+        },
+        "title": "AcceptIn",
+        "type": "object"
+      },
+      "AdminProfileOut": {
+        "properties": {
+          "helper_count": {
+            "title": "Helper Count",
+            "type": "integer"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryOut"
+            },
+            "title": "History",
+            "type": "array"
+          },
+          "owner_phone_masked": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Phone Masked"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/ProfileManageOut"
+          }
+        },
+        "required": [
+          "profile",
+          "owner_phone_masked",
+          "helper_count",
+          "history"
+        ],
+        "title": "AdminProfileOut",
+        "type": "object"
+      },
       "AuditOut": {
         "properties": {
           "action": {
@@ -163,6 +220,273 @@
         "title": "AuthResultOut",
         "type": "object"
       },
+      "BasicIn": {
+        "properties": {
+          "city_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Code"
+          },
+          "current_country": {
+            "pattern": "^[A-Z]{2}$",
+            "title": "Current Country",
+            "type": "string"
+          },
+          "date_of_birth": {
+            "format": "date",
+            "title": "Date Of Birth",
+            "type": "string"
+          },
+          "display_name": {
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Display Name",
+            "type": "string"
+          },
+          "district_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "District Code"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "has_children": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Children"
+          },
+          "height_cm": {
+            "maximum": 220.0,
+            "minimum": 120.0,
+            "title": "Height Cm",
+            "type": "integer"
+          },
+          "marital_status": {
+            "$ref": "#/components/schemas/MaritalStatus"
+          },
+          "mother_tongue": {
+            "$ref": "#/components/schemas/app__profiles__options__Language"
+          },
+          "state_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State Code"
+          },
+          "subject_name": {
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Subject Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subject_name",
+          "display_name",
+          "date_of_birth",
+          "gender",
+          "marital_status",
+          "height_cm",
+          "mother_tongue",
+          "current_country"
+        ],
+        "title": "BasicIn",
+        "type": "object"
+      },
+      "CareerIn": {
+        "properties": {
+          "employer": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Employer"
+          },
+          "employment_type": {
+            "$ref": "#/components/schemas/EmploymentType"
+          },
+          "income_band": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IncomeBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "industry": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Industry"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "occupation": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupation"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility",
+            "default": "members"
+          },
+          "work_city_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Work City Code"
+          }
+        },
+        "required": [
+          "employment_type"
+        ],
+        "title": "CareerIn",
+        "type": "object"
+      },
+      "CommunityIn": {
+        "properties": {
+          "sub_community_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sub Community Code"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility",
+            "default": "members"
+          }
+        },
+        "title": "CommunityIn",
+        "type": "object"
+      },
+      "CommunityOut": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "label_en": {
+            "title": "Label En",
+            "type": "string"
+          },
+          "label_ta": {
+            "title": "Label Ta",
+            "type": "string"
+          },
+          "parent_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Code"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TaxonomyType"
+          }
+        },
+        "required": [
+          "code",
+          "type",
+          "label_en",
+          "label_ta",
+          "parent_code"
+        ],
+        "title": "CommunityOut",
+        "type": "object"
+      },
+      "CompletionOut": {
+        "properties": {
+          "missing_required": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Required",
+            "type": "array"
+          },
+          "percent": {
+            "title": "Percent",
+            "type": "integer"
+          },
+          "sections": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Sections",
+            "type": "object"
+          }
+        },
+        "required": [
+          "percent",
+          "missing_required",
+          "sections"
+        ],
+        "title": "CompletionOut",
+        "type": "object"
+      },
       "ConsentChoices": {
         "properties": {
           "marketing": {
@@ -249,6 +573,300 @@
           "whatsapp"
         ],
         "title": "ConsentType",
+        "type": "string"
+      },
+      "CreatedFor": {
+        "enum": [
+          "self",
+          "son",
+          "daughter",
+          "brother",
+          "sister",
+          "relative",
+          "friend"
+        ],
+        "title": "CreatedFor",
+        "type": "string"
+      },
+      "DelegateSummary": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_me": {
+            "title": "Is Me",
+            "type": "boolean"
+          },
+          "phone_masked": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone Masked"
+          },
+          "relationship": {
+            "title": "Relationship",
+            "type": "string"
+          },
+          "scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "title": "Scopes",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "relationship",
+          "status",
+          "scopes",
+          "phone_masked",
+          "is_me"
+        ],
+        "title": "DelegateSummary",
+        "type": "object"
+      },
+      "DelegationKind": {
+        "enum": [
+          "subject_consent",
+          "helper_invite"
+        ],
+        "title": "DelegationKind",
+        "type": "string"
+      },
+      "Diet": {
+        "enum": [
+          "vegetarian",
+          "non_vegetarian",
+          "eggetarian",
+          "vegan"
+        ],
+        "title": "Diet",
+        "type": "string"
+      },
+      "EducationIn": {
+        "properties": {
+          "field_of_study": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FieldOfStudy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "institution": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Institution"
+          },
+          "qualification": {
+            "$ref": "#/components/schemas/EducationLevel"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility",
+            "default": "members"
+          },
+          "year_completed": {
+            "anyOf": [
+              {
+                "maximum": 2100.0,
+                "minimum": 1960.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year Completed"
+          }
+        },
+        "required": [
+          "qualification"
+        ],
+        "title": "EducationIn",
+        "type": "object"
+      },
+      "EducationLevel": {
+        "enum": [
+          "secondary",
+          "higher_secondary",
+          "diploma",
+          "bachelors",
+          "masters",
+          "doctorate",
+          "other"
+        ],
+        "title": "EducationLevel",
+        "type": "string"
+      },
+      "EmploymentType": {
+        "enum": [
+          "private",
+          "government",
+          "business",
+          "self_employed",
+          "not_working",
+          "student"
+        ],
+        "title": "EmploymentType",
+        "type": "string"
+      },
+      "FamilyIn": {
+        "properties": {
+          "family_description": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Family Description"
+          },
+          "family_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FamilyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "family_values": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FamilyValues"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "father_occupation": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Father Occupation"
+          },
+          "mother_occupation": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mother Occupation"
+          },
+          "native_district_code": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "pattern": "^[a-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Native District Code"
+          },
+          "siblings_count": {
+            "anyOf": [
+              {
+                "maximum": 20.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Siblings Count"
+          },
+          "siblings_married": {
+            "anyOf": [
+              {
+                "maximum": 20.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Siblings Married"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility",
+            "default": "members"
+          }
+        },
+        "title": "FamilyIn",
+        "type": "object"
+      },
+      "FamilyType": {
+        "enum": [
+          "nuclear",
+          "joint"
+        ],
+        "title": "FamilyType",
+        "type": "string"
+      },
+      "FamilyValues": {
+        "enum": [
+          "traditional",
+          "moderate",
+          "liberal"
+        ],
+        "title": "FamilyValues",
+        "type": "string"
+      },
+      "FieldOfStudy": {
+        "enum": [
+          "engineering",
+          "medicine",
+          "science",
+          "commerce",
+          "arts",
+          "law",
+          "management",
+          "computer_applications",
+          "education",
+          "other"
+        ],
+        "title": "FieldOfStudy",
         "type": "string"
       },
       "FlagOut": {
@@ -340,6 +958,14 @@
         "title": "FlagPatchIn",
         "type": "object"
       },
+      "Gender": {
+        "enum": [
+          "male",
+          "female"
+        ],
+        "title": "Gender",
+        "type": "string"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -353,13 +979,330 @@
         "title": "HTTPValidationError",
         "type": "object"
       },
-      "Language": {
+      "Habit": {
         "enum": [
-          "en",
-          "ta",
-          "ta-Latn"
+          "no",
+          "occasionally",
+          "yes"
         ],
-        "title": "Language",
+        "title": "Habit",
+        "type": "string"
+      },
+      "HelperInviteIn": {
+        "properties": {
+          "phone": {
+            "maxLength": 20,
+            "title": "Phone",
+            "type": "string"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/CreatedFor"
+          },
+          "scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "maxItems": 3,
+            "title": "Scopes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "scopes",
+          "phone",
+          "relationship"
+        ],
+        "title": "HelperInviteIn",
+        "type": "object"
+      },
+      "HistoryOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "from_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From Status"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "to_status": {
+            "title": "To Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_status",
+          "to_status",
+          "reason_code",
+          "note",
+          "created_at"
+        ],
+        "title": "HistoryOut",
+        "type": "object"
+      },
+      "IncomeBand": {
+        "description": "Annual income in INR. Optional and privacy-controlled (PRD §4.2).",
+        "enum": [
+          "lt_3l",
+          "3_5l",
+          "5_10l",
+          "10_20l",
+          "20_50l",
+          "gt_50l"
+        ],
+        "title": "IncomeBand",
+        "type": "string"
+      },
+      "Industry": {
+        "enum": [
+          "it_software",
+          "healthcare",
+          "education",
+          "finance",
+          "government",
+          "manufacturing",
+          "agriculture",
+          "trade",
+          "other"
+        ],
+        "title": "Industry",
+        "type": "string"
+      },
+      "Interest": {
+        "enum": [
+          "music",
+          "reading",
+          "travel",
+          "cooking",
+          "sports",
+          "movies",
+          "art",
+          "temple_visits",
+          "yoga",
+          "gardening",
+          "photography",
+          "dance"
+        ],
+        "title": "Interest",
+        "type": "string"
+      },
+      "InvitationOut": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "invited_at": {
+            "format": "date-time",
+            "title": "Invited At",
+            "type": "string"
+          },
+          "invited_by_phone_masked": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By Phone Masked"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/DelegationKind"
+          },
+          "profile_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Display Name"
+          },
+          "proposed_scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "title": "Proposed Scopes",
+            "type": "array"
+          },
+          "relationship": {
+            "title": "Relationship",
+            "type": "string"
+          },
+          "subject_name": {
+            "title": "Subject Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "relationship",
+          "subject_name",
+          "profile_display_name",
+          "proposed_scopes",
+          "invited_by_phone_masked",
+          "invited_at"
+        ],
+        "title": "InvitationOut",
+        "type": "object"
+      },
+      "LifestyleIn": {
+        "properties": {
+          "about_me": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "About Me"
+          },
+          "diet": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Diet"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "drinking": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Habit"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "interests": {
+            "items": {
+              "$ref": "#/components/schemas/Interest"
+            },
+            "maxItems": 12,
+            "title": "Interests",
+            "type": "array"
+          },
+          "languages": {
+            "items": {
+              "$ref": "#/components/schemas/app__profiles__options__Language"
+            },
+            "maxItems": 8,
+            "title": "Languages",
+            "type": "array"
+          },
+          "physical_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PhysicalStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "smoking": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Habit"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "LifestyleIn",
+        "type": "object"
+      },
+      "LocationOut": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "name_en": {
+            "title": "Name En",
+            "type": "string"
+          },
+          "name_ta": {
+            "title": "Name Ta",
+            "type": "string"
+          },
+          "parent_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Code"
+          },
+          "type": {
+            "$ref": "#/components/schemas/LocationType"
+          }
+        },
+        "required": [
+          "code",
+          "type",
+          "name_en",
+          "name_ta",
+          "parent_code"
+        ],
+        "title": "LocationOut",
+        "type": "object"
+      },
+      "LocationType": {
+        "enum": [
+          "country",
+          "state",
+          "district",
+          "city"
+        ],
+        "title": "LocationType",
         "type": "string"
       },
       "LogoutIn": {
@@ -372,6 +1315,16 @@
         },
         "title": "LogoutIn",
         "type": "object"
+      },
+      "MaritalStatus": {
+        "enum": [
+          "never_married",
+          "divorced",
+          "widowed",
+          "awaiting_divorce"
+        ],
+        "title": "MaritalStatus",
+        "type": "string"
       },
       "MeOut": {
         "properties": {
@@ -409,7 +1362,7 @@
             "type": "boolean"
           },
           "preferred_language": {
-            "$ref": "#/components/schemas/Language"
+            "$ref": "#/components/schemas/app__users__models__Language"
           },
           "roles": {
             "items": {
@@ -454,7 +1407,7 @@
           "preferred_language": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/Language"
+                "$ref": "#/components/schemas/app__users__models__Language"
               },
               {
                 "type": "null"
@@ -463,6 +1416,341 @@
           }
         },
         "title": "MePatchIn",
+        "type": "object"
+      },
+      "MemberProfileOut": {
+        "description": "What another member sees. Never includes DOB, phone, full name or hidden fields.",
+        "properties": {
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "community_label": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_for": {
+            "$ref": "#/components/schemas/CreatedFor"
+          },
+          "current_country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Country"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "employer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Employer"
+          },
+          "employment_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EmploymentType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "family": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FamilyIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "field_of_study": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FieldOfStudy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "has_children": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Children"
+          },
+          "height_cm": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Cm"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "income_band": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IncomeBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "industry": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Industry"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "institution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Institution"
+          },
+          "lifestyle": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LifestyleIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "marital_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MaritalStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mother_tongue": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/app__profiles__options__Language"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "native_district": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "occupation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupation"
+          },
+          "photos": {
+            "items": {
+              "$ref": "#/components/schemas/PhotoOut"
+            },
+            "title": "Photos",
+            "type": "array"
+          },
+          "qualification": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EducationLevel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sub_community_label": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "display_name",
+          "age",
+          "gender",
+          "marital_status",
+          "has_children",
+          "height_cm",
+          "mother_tongue",
+          "current_country",
+          "state",
+          "district",
+          "city",
+          "community_label",
+          "sub_community_label",
+          "qualification",
+          "field_of_study",
+          "institution",
+          "employment_type",
+          "occupation",
+          "industry",
+          "employer",
+          "income_band",
+          "family",
+          "native_district",
+          "lifestyle",
+          "photos",
+          "created_for"
+        ],
+        "title": "MemberProfileOut",
+        "type": "object"
+      },
+      "ModerationStatus": {
+        "enum": [
+          "pending",
+          "approved",
+          "rejected"
+        ],
+        "title": "ModerationStatus",
+        "type": "string"
+      },
+      "OptionsOut": {
+        "properties": {
+          "max_height_cm": {
+            "title": "Max Height Cm",
+            "type": "integer"
+          },
+          "min_age": {
+            "title": "Min Age",
+            "type": "integer"
+          },
+          "min_height_cm": {
+            "title": "Min Height Cm",
+            "type": "integer"
+          },
+          "options": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Options",
+            "type": "object"
+          }
+        },
+        "required": [
+          "options",
+          "min_age",
+          "min_height_cm",
+          "max_height_cm"
+        ],
+        "title": "OptionsOut",
         "type": "object"
       },
       "OtpChallengeOut": {
@@ -507,7 +1795,7 @@
       "OtpRequestIn": {
         "properties": {
           "language": {
-            "$ref": "#/components/schemas/Language",
+            "$ref": "#/components/schemas/app__users__models__Language",
             "default": "en"
           },
           "phone": {
@@ -589,7 +1877,7 @@
           "language": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/Language"
+                "$ref": "#/components/schemas/app__users__models__Language"
               },
               {
                 "type": "null"
@@ -602,6 +1890,1218 @@
           "code"
         ],
         "title": "OtpVerifyIn",
+        "type": "object"
+      },
+      "PhotoConfirmIn": {
+        "properties": {
+          "upload_id": {
+            "maxLength": 64,
+            "title": "Upload Id",
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility",
+            "default": "members"
+          }
+        },
+        "required": [
+          "upload_id"
+        ],
+        "title": "PhotoConfirmIn",
+        "type": "object"
+      },
+      "PhotoDecisionIn": {
+        "properties": {
+          "decision": {
+            "enum": [
+              "approve",
+              "reject"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "PhotoDecisionIn",
+        "type": "object"
+      },
+      "PhotoOut": {
+        "properties": {
+          "full_url": {
+            "title": "Full Url",
+            "type": "string"
+          },
+          "height": {
+            "title": "Height",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_primary": {
+            "title": "Is Primary",
+            "type": "boolean"
+          },
+          "moderation_reason": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "moderation_status": {
+            "$ref": "#/components/schemas/ModerationStatus"
+          },
+          "thumb_url": {
+            "title": "Thumb Url",
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility"
+          },
+          "width": {
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "thumb_url",
+          "full_url",
+          "is_primary",
+          "visibility",
+          "moderation_status",
+          "width",
+          "height"
+        ],
+        "title": "PhotoOut",
+        "type": "object"
+      },
+      "PhotoPatchIn": {
+        "properties": {
+          "is_primary": {
+            "anyOf": [
+              {
+                "const": true,
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Primary"
+          },
+          "sort_order": {
+            "anyOf": [
+              {
+                "maximum": 20.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sort Order"
+          },
+          "visibility": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Visibility"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "PhotoPatchIn",
+        "type": "object"
+      },
+      "PhysicalStatus": {
+        "enum": [
+          "normal",
+          "physically_challenged"
+        ],
+        "title": "PhysicalStatus",
+        "type": "string"
+      },
+      "PlaceOut": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "name_en": {
+            "title": "Name En",
+            "type": "string"
+          },
+          "name_ta": {
+            "title": "Name Ta",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "name_en",
+          "name_ta"
+        ],
+        "title": "PlaceOut",
+        "type": "object"
+      },
+      "PreferenceIn": {
+        "properties": {
+          "age_max": {
+            "anyOf": [
+              {
+                "maximum": 80.0,
+                "minimum": 18.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Max"
+          },
+          "age_min": {
+            "anyOf": [
+              {
+                "maximum": 80.0,
+                "minimum": 18.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Min"
+          },
+          "countries": {
+            "items": {
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Countries",
+            "type": "array"
+          },
+          "diets": {
+            "items": {
+              "$ref": "#/components/schemas/Diet"
+            },
+            "maxItems": 10,
+            "title": "Diets",
+            "type": "array"
+          },
+          "district_codes": {
+            "items": {
+              "maxLength": 50,
+              "pattern": "^[a-z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 40,
+            "title": "District Codes",
+            "type": "array"
+          },
+          "education_levels": {
+            "items": {
+              "$ref": "#/components/schemas/EducationLevel"
+            },
+            "maxItems": 10,
+            "title": "Education Levels",
+            "type": "array"
+          },
+          "employment_types": {
+            "items": {
+              "$ref": "#/components/schemas/EmploymentType"
+            },
+            "maxItems": 10,
+            "title": "Employment Types",
+            "type": "array"
+          },
+          "height_max_cm": {
+            "anyOf": [
+              {
+                "maximum": 220.0,
+                "minimum": 120.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Max Cm"
+          },
+          "height_min_cm": {
+            "anyOf": [
+              {
+                "maximum": 220.0,
+                "minimum": 120.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Min Cm"
+          },
+          "income_bands": {
+            "items": {
+              "$ref": "#/components/schemas/IncomeBand"
+            },
+            "maxItems": 10,
+            "title": "Income Bands",
+            "type": "array"
+          },
+          "is_default": {
+            "default": true,
+            "title": "Is Default",
+            "type": "boolean"
+          },
+          "marital_statuses": {
+            "items": {
+              "$ref": "#/components/schemas/MaritalStatus"
+            },
+            "maxItems": 10,
+            "title": "Marital Statuses",
+            "type": "array"
+          },
+          "mother_tongues": {
+            "items": {
+              "$ref": "#/components/schemas/app__profiles__options__Language"
+            },
+            "maxItems": 10,
+            "title": "Mother Tongues",
+            "type": "array"
+          },
+          "must_have": {
+            "items": {
+              "enum": [
+                "age",
+                "height",
+                "marital_status",
+                "location",
+                "education",
+                "employment",
+                "income",
+                "diet",
+                "mother_tongue",
+                "community"
+              ],
+              "type": "string"
+            },
+            "title": "Must Have",
+            "type": "array"
+          },
+          "name": {
+            "default": "Default",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "preferred": {
+            "items": {
+              "enum": [
+                "age",
+                "height",
+                "marital_status",
+                "location",
+                "education",
+                "employment",
+                "income",
+                "diet",
+                "mother_tongue",
+                "community"
+              ],
+              "type": "string"
+            },
+            "title": "Preferred",
+            "type": "array"
+          },
+          "sub_community_codes": {
+            "items": {
+              "maxLength": 50,
+              "pattern": "^[a-z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Sub Community Codes",
+            "type": "array"
+          }
+        },
+        "title": "PreferenceIn",
+        "type": "object"
+      },
+      "PreferenceOut": {
+        "properties": {
+          "age_max": {
+            "anyOf": [
+              {
+                "maximum": 80.0,
+                "minimum": 18.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Max"
+          },
+          "age_min": {
+            "anyOf": [
+              {
+                "maximum": 80.0,
+                "minimum": 18.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Min"
+          },
+          "countries": {
+            "items": {
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Countries",
+            "type": "array"
+          },
+          "diets": {
+            "items": {
+              "$ref": "#/components/schemas/Diet"
+            },
+            "maxItems": 10,
+            "title": "Diets",
+            "type": "array"
+          },
+          "district_codes": {
+            "items": {
+              "maxLength": 50,
+              "pattern": "^[a-z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 40,
+            "title": "District Codes",
+            "type": "array"
+          },
+          "education_levels": {
+            "items": {
+              "$ref": "#/components/schemas/EducationLevel"
+            },
+            "maxItems": 10,
+            "title": "Education Levels",
+            "type": "array"
+          },
+          "employment_types": {
+            "items": {
+              "$ref": "#/components/schemas/EmploymentType"
+            },
+            "maxItems": 10,
+            "title": "Employment Types",
+            "type": "array"
+          },
+          "flexible": {
+            "items": {
+              "enum": [
+                "age",
+                "height",
+                "marital_status",
+                "location",
+                "education",
+                "employment",
+                "income",
+                "diet",
+                "mother_tongue",
+                "community"
+              ],
+              "type": "string"
+            },
+            "title": "Flexible",
+            "type": "array"
+          },
+          "height_max_cm": {
+            "anyOf": [
+              {
+                "maximum": 220.0,
+                "minimum": 120.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Max Cm"
+          },
+          "height_min_cm": {
+            "anyOf": [
+              {
+                "maximum": 220.0,
+                "minimum": 120.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Min Cm"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "income_bands": {
+            "items": {
+              "$ref": "#/components/schemas/IncomeBand"
+            },
+            "maxItems": 10,
+            "title": "Income Bands",
+            "type": "array"
+          },
+          "is_default": {
+            "default": true,
+            "title": "Is Default",
+            "type": "boolean"
+          },
+          "marital_statuses": {
+            "items": {
+              "$ref": "#/components/schemas/MaritalStatus"
+            },
+            "maxItems": 10,
+            "title": "Marital Statuses",
+            "type": "array"
+          },
+          "mother_tongues": {
+            "items": {
+              "$ref": "#/components/schemas/app__profiles__options__Language"
+            },
+            "maxItems": 10,
+            "title": "Mother Tongues",
+            "type": "array"
+          },
+          "must_have": {
+            "items": {
+              "enum": [
+                "age",
+                "height",
+                "marital_status",
+                "location",
+                "education",
+                "employment",
+                "income",
+                "diet",
+                "mother_tongue",
+                "community"
+              ],
+              "type": "string"
+            },
+            "title": "Must Have",
+            "type": "array"
+          },
+          "name": {
+            "default": "Default",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "preferred": {
+            "items": {
+              "enum": [
+                "age",
+                "height",
+                "marital_status",
+                "location",
+                "education",
+                "employment",
+                "income",
+                "diet",
+                "mother_tongue",
+                "community"
+              ],
+              "type": "string"
+            },
+            "title": "Preferred",
+            "type": "array"
+          },
+          "sub_community_codes": {
+            "items": {
+              "maxLength": 50,
+              "pattern": "^[a-z0-9_-]+$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Sub Community Codes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "flexible"
+        ],
+        "title": "PreferenceOut",
+        "type": "object"
+      },
+      "ProfileCreateIn": {
+        "properties": {
+          "created_for": {
+            "$ref": "#/components/schemas/CreatedFor"
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject_name": {
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Subject Name",
+            "type": "string"
+          },
+          "subject_phone": {
+            "anyOf": [
+              {
+                "maxLength": 20,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Phone"
+          }
+        },
+        "required": [
+          "created_for",
+          "subject_name"
+        ],
+        "title": "ProfileCreateIn",
+        "type": "object"
+      },
+      "ProfileDecisionIn": {
+        "properties": {
+          "decision": {
+            "enum": [
+              "approve",
+              "request_changes"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "photos": {
+            "additionalProperties": {
+              "enum": [
+                "approve",
+                "reject"
+              ],
+              "type": "string"
+            },
+            "propertyNames": {
+              "format": "uuid"
+            },
+            "title": "Photos",
+            "type": "object"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "ProfileDecisionIn",
+        "type": "object"
+      },
+      "ProfileManageOut": {
+        "description": "Everything the owner (or a permitted helper) can see and edit.",
+        "properties": {
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "approved_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approved At"
+          },
+          "career": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CareerIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "community": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CommunityIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "community_label": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "completion": {
+            "$ref": "#/components/schemas/CompletionOut"
+          },
+          "created_for": {
+            "$ref": "#/components/schemas/CreatedFor"
+          },
+          "current_country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Country"
+          },
+          "date_of_birth": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date Of Birth"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "district": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "education": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EducationIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "family": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FamilyIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "has_children": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Children"
+          },
+          "height_cm": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height Cm"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "lifestyle": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LifestyleIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "marital_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MaritalStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mother_tongue": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/app__profiles__options__Language"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "my_role": {
+            "enum": [
+              "owner",
+              "delegate",
+              "creator_pending",
+              "staff"
+            ],
+            "title": "My Role",
+            "type": "string"
+          },
+          "my_scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "title": "My Scopes",
+            "type": "array"
+          },
+          "native_district": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "photos": {
+            "items": {
+              "$ref": "#/components/schemas/PhotoOut"
+            },
+            "title": "Photos",
+            "type": "array"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProfileStatus"
+          },
+          "status_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status Note"
+          },
+          "status_reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewReason"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status Reason Code"
+          },
+          "subject_consent_pending": {
+            "title": "Subject Consent Pending",
+            "type": "boolean"
+          },
+          "subject_name": {
+            "title": "Subject Name",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ProfileVisibility"
+          },
+          "work_city": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "my_role",
+          "my_scopes",
+          "created_for",
+          "subject_name",
+          "display_name",
+          "date_of_birth",
+          "age",
+          "gender",
+          "marital_status",
+          "has_children",
+          "height_cm",
+          "mother_tongue",
+          "current_country",
+          "state",
+          "district",
+          "city",
+          "community",
+          "community_label",
+          "education",
+          "career",
+          "work_city",
+          "family",
+          "native_district",
+          "lifestyle",
+          "photos",
+          "status",
+          "status_reason_code",
+          "status_note",
+          "visibility",
+          "completion",
+          "subject_consent_pending",
+          "submitted_at",
+          "approved_at"
+        ],
+        "title": "ProfileManageOut",
+        "type": "object"
+      },
+      "ProfileStatus": {
+        "enum": [
+          "draft",
+          "submitted",
+          "approved",
+          "needs_changes",
+          "suspended",
+          "archived"
+        ],
+        "title": "ProfileStatus",
+        "type": "string"
+      },
+      "ProfileSummaryOut": {
+        "properties": {
+          "completion_percent": {
+            "title": "Completion Percent",
+            "type": "integer"
+          },
+          "created_for": {
+            "$ref": "#/components/schemas/CreatedFor"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "my_role": {
+            "enum": [
+              "owner",
+              "delegate",
+              "creator_pending"
+            ],
+            "title": "My Role",
+            "type": "string"
+          },
+          "primary_photo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Photo Url"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProfileStatus"
+          },
+          "subject_consent_pending": {
+            "title": "Subject Consent Pending",
+            "type": "boolean"
+          },
+          "subject_name": {
+            "title": "Subject Name",
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ProfileVisibility"
+          }
+        },
+        "required": [
+          "id",
+          "my_role",
+          "created_for",
+          "subject_name",
+          "display_name",
+          "status",
+          "visibility",
+          "completion_percent",
+          "primary_photo_url",
+          "subject_consent_pending"
+        ],
+        "title": "ProfileSummaryOut",
+        "type": "object"
+      },
+      "ProfileVisibility": {
+        "enum": [
+          "discoverable",
+          "paused"
+        ],
+        "title": "ProfileVisibility",
+        "type": "string"
+      },
+      "QueueItem": {
+        "properties": {
+          "completion_percent": {
+            "title": "Completion Percent",
+            "type": "integer"
+          },
+          "created_for": {
+            "title": "Created For",
+            "type": "string"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "pending_photos": {
+            "title": "Pending Photos",
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProfileStatus"
+          },
+          "status_reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status Reason Code"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          }
+        },
+        "required": [
+          "id",
+          "display_name",
+          "created_for",
+          "status",
+          "status_reason_code",
+          "completion_percent",
+          "pending_photos",
+          "submitted_at"
+        ],
+        "title": "QueueItem",
+        "type": "object"
+      },
+      "QueuePage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/QueueItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "total"
+        ],
+        "title": "QueuePage",
         "type": "object"
       },
       "RefreshIn": {
@@ -617,6 +3117,47 @@
           "refresh_token"
         ],
         "title": "RefreshIn",
+        "type": "object"
+      },
+      "ReviewReason": {
+        "description": "Moderator reason codes shown (translated) to the member.",
+        "enum": [
+          "incomplete",
+          "photo_unclear",
+          "photo_not_person",
+          "contact_in_text",
+          "inappropriate_text",
+          "inconsistent_details",
+          "community_eligibility",
+          "other"
+        ],
+        "title": "ReviewReason",
+        "type": "string"
+      },
+      "Scope": {
+        "enum": [
+          "edit_profile",
+          "manage_photos",
+          "manage_preferences"
+        ],
+        "title": "Scope",
+        "type": "string"
+      },
+      "ScopesIn": {
+        "properties": {
+          "scopes": {
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "maxItems": 3,
+            "title": "Scopes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "scopes"
+        ],
+        "title": "ScopesIn",
         "type": "object"
       },
       "SessionOut": {
@@ -675,6 +3216,14 @@
         "title": "SessionOut",
         "type": "object"
       },
+      "TaxonomyType": {
+        "enum": [
+          "community",
+          "sub_community"
+        ],
+        "title": "TaxonomyType",
+        "type": "string"
+      },
       "TokenPairOut": {
         "properties": {
           "access_token": {
@@ -707,6 +3256,66 @@
           "refresh_token_expires_at"
         ],
         "title": "TokenPairOut",
+        "type": "object"
+      },
+      "UploadUrlIn": {
+        "properties": {
+          "content_type": {
+            "enum": [
+              "image/jpeg",
+              "image/png",
+              "image/webp"
+            ],
+            "title": "Content Type",
+            "type": "string"
+          },
+          "size_bytes": {
+            "exclusiveMinimum": 0.0,
+            "title": "Size Bytes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "content_type",
+          "size_bytes"
+        ],
+        "title": "UploadUrlIn",
+        "type": "object"
+      },
+      "UploadUrlOut": {
+        "properties": {
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "fields": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Fields",
+            "type": "object"
+          },
+          "max_bytes": {
+            "title": "Max Bytes",
+            "type": "integer"
+          },
+          "upload_id": {
+            "title": "Upload Id",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "upload_id",
+          "url",
+          "fields",
+          "expires_in",
+          "max_bytes"
+        ],
+        "title": "UploadUrlOut",
         "type": "object"
       },
       "ValidationError": {
@@ -748,6 +3357,39 @@
         ],
         "title": "ValidationError",
         "type": "object"
+      },
+      "Visibility": {
+        "description": "Who can see a field or photo, besides the owner and their delegates.",
+        "enum": [
+          "members",
+          "connections",
+          "hidden"
+        ],
+        "title": "Visibility",
+        "type": "string"
+      },
+      "app__profiles__options__Language": {
+        "enum": [
+          "tamil",
+          "english",
+          "telugu",
+          "kannada",
+          "malayalam",
+          "hindi",
+          "saurashtra",
+          "other"
+        ],
+        "title": "Language",
+        "type": "string"
+      },
+      "app__users__models__Language": {
+        "enum": [
+          "en",
+          "ta",
+          "ta-Latn"
+        ],
+        "title": "Language",
+        "type": "string"
       }
     },
     "securitySchemes": {
@@ -948,6 +3590,245 @@
         "summary": "Patch Flag",
         "tags": [
           "admin"
+        ]
+      }
+    },
+    "/api/v1/admin/photos/{photo_id}/decision": {
+      "post": {
+        "operationId": "decide_photo_api_v1_admin_photos__photo_id__decision_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "photo_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Photo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhotoDecisionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Decide Photo",
+        "tags": [
+          "admin",
+          "moderation"
+        ]
+      }
+    },
+    "/api/v1/admin/profiles": {
+      "get": {
+        "description": "Review queue, oldest submission first.",
+        "operationId": "queue_api_v1_admin_profiles_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ProfileStatus",
+              "default": "submitted"
+            }
+          },
+          {
+            "description": "Return items after this id",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Return items after this id",
+              "title": "Cursor"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueuePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Queue",
+        "tags": [
+          "admin",
+          "moderation"
+        ]
+      }
+    },
+    "/api/v1/admin/profiles/{profile_id}": {
+      "get": {
+        "operationId": "review_detail_api_v1_admin_profiles__profile_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProfileOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Review Detail",
+        "tags": [
+          "admin",
+          "moderation"
+        ]
+      }
+    },
+    "/api/v1/admin/profiles/{profile_id}/decision": {
+      "post": {
+        "operationId": "decide_profile_api_v1_admin_profiles__profile_id__decision_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileDecisionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProfileOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Decide Profile",
+        "tags": [
+          "admin",
+          "moderation"
         ]
       }
     },
@@ -1310,6 +4191,1634 @@
         "summary": "Withdraw Consent",
         "tags": [
           "consent"
+        ]
+      }
+    },
+    "/api/v1/delegates/{delegation_id}": {
+      "delete": {
+        "operationId": "revoke_api_v1_delegates__delegation_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "delegation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Delegation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Revoke",
+        "tags": [
+          "delegation"
+        ]
+      },
+      "patch": {
+        "operationId": "update_scopes_api_v1_delegates__delegation_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "delegation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Delegation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScopesIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DelegateSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Update Scopes",
+        "tags": [
+          "delegation"
+        ]
+      }
+    },
+    "/api/v1/delegations/invitations": {
+      "get": {
+        "operationId": "my_invitations_api_v1_delegations_invitations_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/InvitationOut"
+                  },
+                  "title": "Response My Invitations Api V1 Delegations Invitations Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "My Invitations",
+        "tags": [
+          "delegation"
+        ]
+      }
+    },
+    "/api/v1/delegations/{delegation_id}/accept": {
+      "post": {
+        "operationId": "accept_invitation_api_v1_delegations__delegation_id__accept_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "delegation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Delegation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Accept Invitation Api V1 Delegations  Delegation Id  Accept Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Accept Invitation",
+        "tags": [
+          "delegation"
+        ]
+      }
+    },
+    "/api/v1/delegations/{delegation_id}/decline": {
+      "post": {
+        "operationId": "decline_invitation_api_v1_delegations__delegation_id__decline_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "delegation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Delegation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Decline Invitation",
+        "tags": [
+          "delegation"
+        ]
+      }
+    },
+    "/api/v1/media/photos/{photo_id}": {
+      "get": {
+        "description": "Stream a photo the caller is allowed to see; 404 otherwise (never reveal existence).",
+        "operationId": "get_photo_api_v1_media_photos__photo_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "photo_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Photo Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "variant",
+            "required": false,
+            "schema": {
+              "default": "thumb",
+              "enum": [
+                "thumb",
+                "full"
+              ],
+              "title": "Variant",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "image/jpeg": {}
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Photo",
+        "tags": [
+          "media"
+        ]
+      }
+    },
+    "/api/v1/preferences/{preference_id}": {
+      "delete": {
+        "operationId": "delete_preference_api_v1_preferences__preference_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "preference_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Preference Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Preference",
+        "tags": [
+          "preferences"
+        ]
+      },
+      "put": {
+        "operationId": "update_preference_api_v1_preferences__preference_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "preference_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Preference Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreferenceIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreferenceOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Update Preference",
+        "tags": [
+          "preferences"
+        ]
+      }
+    },
+    "/api/v1/profiles": {
+      "post": {
+        "operationId": "create_profile_api_v1_profiles_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Profile",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/managed": {
+      "get": {
+        "description": "Profiles the caller owns, helps manage, or created and is waiting on consent for.",
+        "operationId": "list_managed_api_v1_profiles_managed_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProfileSummaryOut"
+                  },
+                  "title": "Response List Managed Api V1 Profiles Managed Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Managed",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}": {
+      "get": {
+        "operationId": "get_profile_api_v1_profiles__profile_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ProfileManageOut"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MemberProfileOut"
+                    }
+                  ],
+                  "title": "Response Get Profile Api V1 Profiles  Profile Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Profile",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/basic": {
+      "put": {
+        "operationId": "put_basic_api_v1_profiles__profile_id__basic_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Basic",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/career": {
+      "put": {
+        "operationId": "put_career_api_v1_profiles__profile_id__career_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CareerIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Career",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/community": {
+      "put": {
+        "operationId": "put_community_api_v1_profiles__profile_id__community_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommunityIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Community",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/delegates": {
+      "get": {
+        "operationId": "list_delegates_api_v1_profiles__profile_id__delegates_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DelegateSummary"
+                  },
+                  "title": "Response List Delegates Api V1 Profiles  Profile Id  Delegates Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Delegates",
+        "tags": [
+          "delegation"
+        ]
+      },
+      "post": {
+        "operationId": "invite_helper_api_v1_profiles__profile_id__delegates_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelperInviteIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DelegateSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Invite Helper",
+        "tags": [
+          "delegation"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/education": {
+      "put": {
+        "operationId": "put_education_api_v1_profiles__profile_id__education_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EducationIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Education",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/family": {
+      "put": {
+        "operationId": "put_family_api_v1_profiles__profile_id__family_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FamilyIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Family",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/lifestyle": {
+      "put": {
+        "operationId": "put_lifestyle_api_v1_profiles__profile_id__lifestyle_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LifestyleIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Put Lifestyle",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/pause": {
+      "post": {
+        "description": "Hide the profile from discovery without deleting anything.",
+        "operationId": "pause_api_v1_profiles__profile_id__pause_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Pause",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/photos": {
+      "post": {
+        "operationId": "confirm_photo_api_v1_profiles__profile_id__photos_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhotoConfirmIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Confirm Photo",
+        "tags": [
+          "media"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/photos/upload-url": {
+      "post": {
+        "operationId": "upload_url_api_v1_profiles__profile_id__photos_upload_url_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadUrlIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadUrlOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Upload Url",
+        "tags": [
+          "media"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/photos/{photo_id}": {
+      "delete": {
+        "operationId": "delete_photo_api_v1_profiles__profile_id__photos__photo_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "photo_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Photo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Photo",
+        "tags": [
+          "media"
+        ]
+      },
+      "patch": {
+        "operationId": "update_photo_api_v1_profiles__profile_id__photos__photo_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "photo_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Photo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhotoPatchIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Update Photo",
+        "tags": [
+          "media"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/preferences": {
+      "get": {
+        "operationId": "list_preferences_api_v1_profiles__profile_id__preferences_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PreferenceOut"
+                  },
+                  "title": "Response List Preferences Api V1 Profiles  Profile Id  Preferences Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Preferences",
+        "tags": [
+          "preferences"
+        ]
+      },
+      "post": {
+        "operationId": "create_preference_api_v1_profiles__profile_id__preferences_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreferenceIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreferenceOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Preference",
+        "tags": [
+          "preferences"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/preview": {
+      "get": {
+        "description": "How other members will see this profile (photos only once approved).",
+        "operationId": "preview_api_v1_profiles__profile_id__preview_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberProfileOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Preview",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/resume": {
+      "post": {
+        "operationId": "resume_api_v1_profiles__profile_id__resume_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Resume",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/profiles/{profile_id}/submit": {
+      "post": {
+        "operationId": "submit_api_v1_profiles__profile_id__submit_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "profile_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Profile Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileManageOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Submit",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/api/v1/reference/community": {
+      "get": {
+        "operationId": "community_api_v1_reference_community_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CommunityOut"
+                  },
+                  "title": "Response Community Api V1 Reference Community Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Community",
+        "tags": [
+          "reference"
+        ]
+      }
+    },
+    "/api/v1/reference/locations": {
+      "get": {
+        "operationId": "locations_api_v1_reference_locations_get",
+        "parameters": [
+          {
+            "description": "Parent location code",
+            "in": "query",
+            "name": "parent",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 50,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Parent location code",
+              "title": "Parent"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/LocationType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/LocationOut"
+                  },
+                  "title": "Response Locations Api V1 Reference Locations Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Locations",
+        "tags": [
+          "reference"
+        ]
+      }
+    },
+    "/api/v1/reference/options": {
+      "get": {
+        "operationId": "options_api_v1_reference_options_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptionsOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Options",
+        "tags": [
+          "reference"
         ]
       }
     },

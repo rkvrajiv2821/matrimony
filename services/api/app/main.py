@@ -15,7 +15,14 @@ from app.common.redis import close_redis
 from app.consent.router import router as consent_router
 from app.database import models  # noqa: F401  (register all mappers)
 from app.database.session import dispose_engine
+from app.delegation.router import router as delegation_router
 from app.health.router import router as health_router
+from app.media import storage
+from app.media.router import router as media_router
+from app.moderation.router import router as moderation_router
+from app.preferences.router import router as preferences_router
+from app.profiles.router import router as profiles_router
+from app.reference.router import router as reference_router
 from app.users.router import router as users_router
 
 API_PREFIX = "/api/v1"
@@ -24,6 +31,12 @@ _REQUEST_ID = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    settings = get_settings()
+    if settings.storage_create_bucket and settings.env in ("local", "test", "development"):
+        try:
+            await storage.ensure_bucket()
+        except Exception:  # storage may start after the API in docker-compose
+            logging.getLogger("vaibhav").warning("Could not ensure storage bucket at startup")
     yield
     await dispose_engine()
     await close_redis()
@@ -72,7 +85,18 @@ def create_app() -> FastAPI:
         return response
 
     app.include_router(health_router)
-    for router in (auth_router, users_router, consent_router, admin_router):
+    for router in (
+        auth_router,
+        users_router,
+        consent_router,
+        reference_router,
+        profiles_router,
+        delegation_router,
+        preferences_router,
+        media_router,
+        moderation_router,
+        admin_router,
+    ):
         app.include_router(router, prefix=API_PREFIX)
     return app
 

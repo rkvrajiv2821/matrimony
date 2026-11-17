@@ -10,6 +10,9 @@ os.environ.setdefault(
 )
 os.environ.setdefault("VAIBHAV_REDIS_URL", "redis://127.0.0.1:6379/15")
 os.environ["VAIBHAV_OTP_DEBUG_ECHO"] = "true"
+MOTO_PORT = int(os.environ.get("VAIBHAV_TEST_S3_PORT", "5055"))
+os.environ.setdefault("VAIBHAV_STORAGE_ENDPOINT_URL", f"http://127.0.0.1:{MOTO_PORT}")
+os.environ.setdefault("VAIBHAV_STORAGE_BUCKET", "vaibhav-test")
 
 from collections.abc import AsyncIterator
 from dataclasses import dataclass
@@ -26,6 +29,17 @@ from app.common.redis import get_redis
 from app.database.session import get_sessionmaker
 
 MUTABLE_TABLES = [
+    "preference_community_values",
+    "partner_preferences",
+    "profile_photos",
+    "profile_status_history",
+    "profile_community",
+    "profile_personal_details",
+    "profile_family_details",
+    "profile_education",
+    "profile_employment",
+    "delegated_access",
+    "profiles",
     "audit_logs",
     "consents",
     "user_entitlements",
@@ -66,6 +80,24 @@ def migrated_db() -> None:
     t.join()
     if errors:
         raise errors[0]
+
+
+@pytest.fixture(scope="session", autouse=True)
+def s3_server() -> object:
+    """In-process S3 emulator so photo tests exercise real presigned uploads."""
+    from moto.server import ThreadedMotoServer
+
+    server = ThreadedMotoServer(ip_address="127.0.0.1", port=MOTO_PORT, verbose=False)
+    server.start()
+    yield server
+    server.stop()
+
+
+@pytest.fixture(scope="session", autouse=True)
+async def s3_bucket(s3_server: object) -> None:
+    from app.media import storage
+
+    await storage.ensure_bucket()
 
 
 @pytest.fixture(autouse=True)

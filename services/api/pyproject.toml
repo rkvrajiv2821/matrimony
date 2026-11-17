@@ -5,11 +5,14 @@ description = "VAIBHAV matrimony API (FastAPI modular monolith)"
 requires-python = ">=3.13"
 dependencies = [
     "alembic>=1.20.1",
+    "anyio>=4.16.0",
     "asyncmy>=0.2.18",
+    "boto3>=1.44.4",
     "cryptography>=50.0.2",
     "email-validator>=2.4.0",
     "fastapi>=0.163.1",
     "phonenumbers>=9.0.43",
+    "pillow>=13.0.0",
     "pydantic-settings>=2.16.3",
     "pyjwt>=2.15.1",
     "redis>=8.1.0",
@@ -20,11 +23,14 @@ dependencies = [
 [dependency-groups]
 dev = [
     "asgi-lifespan>=2.1.0",
+    "boto3-stubs[s3]>=1.44.4",
     "httpx>=0.28.1",
+    "moto[server]>=5.2.5",
     "mypy>=2.4.1",
     "pytest>=9.2.0",
     "pytest-asyncio>=1.5.0",
     "ruff>=0.17.5",
+    "types-pillow>=10.2.0.20240822",
 ]
 
 [tool.ruff]
@@ -36,7 +42,8 @@ select = ["E", "F", "I", "B", "UP", "S", "ASYNC", "SIM", "RUF"]
 ignore = ["S101", "B008", "RUF012"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S105", "S106"]
+"tests/**" = ["S105", "S106", "E501"]
+"tests/conftest.py" = ["E402"]
 "migrations/**" = ["E501"]
 
 [tool.mypy]

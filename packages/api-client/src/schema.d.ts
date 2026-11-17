@@ -55,6 +55,77 @@ export interface paths {
         patch: operations["patch_flag_api_v1_admin_feature_flags__key__patch"];
         trace?: never;
     };
+    "/api/v1/admin/photos/{photo_id}/decision": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decide Photo */
+        post: operations["decide_photo_api_v1_admin_photos__photo_id__decision_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/profiles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Queue
+         * @description Review queue, oldest submission first.
+         */
+        get: operations["queue_api_v1_admin_profiles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/profiles/{profile_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Review Detail */
+        get: operations["review_detail_api_v1_admin_profiles__profile_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/profiles/{profile_id}/decision": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decide Profile */
+        post: operations["decide_profile_api_v1_admin_profiles__profile_id__decision_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/logout": {
         parameters: {
             query?: never;
@@ -214,6 +285,482 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/delegates/{delegation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke */
+        delete: operations["revoke_api_v1_delegates__delegation_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Scopes */
+        patch: operations["update_scopes_api_v1_delegates__delegation_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/delegations/invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** My Invitations */
+        get: operations["my_invitations_api_v1_delegations_invitations_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/delegations/{delegation_id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept Invitation */
+        post: operations["accept_invitation_api_v1_delegations__delegation_id__accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/delegations/{delegation_id}/decline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decline Invitation */
+        post: operations["decline_invitation_api_v1_delegations__delegation_id__decline_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/media/photos/{photo_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Photo
+         * @description Stream a photo the caller is allowed to see; 404 otherwise (never reveal existence).
+         */
+        get: operations["get_photo_api_v1_media_photos__photo_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/preferences/{preference_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Preference */
+        put: operations["update_preference_api_v1_preferences__preference_id__put"];
+        post?: never;
+        /** Delete Preference */
+        delete: operations["delete_preference_api_v1_preferences__preference_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Profile */
+        post: operations["create_profile_api_v1_profiles_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/managed": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Managed
+         * @description Profiles the caller owns, helps manage, or created and is waiting on consent for.
+         */
+        get: operations["list_managed_api_v1_profiles_managed_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Profile */
+        get: operations["get_profile_api_v1_profiles__profile_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/basic": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Basic */
+        put: operations["put_basic_api_v1_profiles__profile_id__basic_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/career": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Career */
+        put: operations["put_career_api_v1_profiles__profile_id__career_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/community": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Community */
+        put: operations["put_community_api_v1_profiles__profile_id__community_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/delegates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Delegates */
+        get: operations["list_delegates_api_v1_profiles__profile_id__delegates_get"];
+        put?: never;
+        /** Invite Helper */
+        post: operations["invite_helper_api_v1_profiles__profile_id__delegates_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/education": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Education */
+        put: operations["put_education_api_v1_profiles__profile_id__education_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/family": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Family */
+        put: operations["put_family_api_v1_profiles__profile_id__family_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/lifestyle": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Lifestyle */
+        put: operations["put_lifestyle_api_v1_profiles__profile_id__lifestyle_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/pause": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Pause
+         * @description Hide the profile from discovery without deleting anything.
+         */
+        post: operations["pause_api_v1_profiles__profile_id__pause_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/photos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Confirm Photo */
+        post: operations["confirm_photo_api_v1_profiles__profile_id__photos_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/photos/upload-url": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Upload Url */
+        post: operations["upload_url_api_v1_profiles__profile_id__photos_upload_url_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/photos/{photo_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Photo */
+        delete: operations["delete_photo_api_v1_profiles__profile_id__photos__photo_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Photo */
+        patch: operations["update_photo_api_v1_profiles__profile_id__photos__photo_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/preferences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Preferences */
+        get: operations["list_preferences_api_v1_profiles__profile_id__preferences_get"];
+        put?: never;
+        /** Create Preference */
+        post: operations["create_preference_api_v1_profiles__profile_id__preferences_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Preview
+         * @description How other members will see this profile (photos only once approved).
+         */
+        get: operations["preview_api_v1_profiles__profile_id__preview_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resume */
+        post: operations["resume_api_v1_profiles__profile_id__resume_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profiles/{profile_id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Submit */
+        post: operations["submit_api_v1_profiles__profile_id__submit_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reference/community": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Community */
+        get: operations["community_api_v1_reference_community_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reference/locations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Locations */
+        get: operations["locations_api_v1_reference_locations_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reference/options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Options */
+        get: operations["options_api_v1_reference_options_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/users/me": {
         parameters: {
             query?: never;
@@ -287,6 +834,21 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AcceptIn */
+        AcceptIn: {
+            /** Scopes */
+            scopes?: components["schemas"]["Scope"][] | null;
+        };
+        /** AdminProfileOut */
+        AdminProfileOut: {
+            /** Helper Count */
+            helper_count: number;
+            /** History */
+            history: components["schemas"]["HistoryOut"][];
+            /** Owner Phone Masked */
+            owner_phone_masked: string | null;
+            profile: components["schemas"]["ProfileManageOut"];
+        };
         /** AuditOut */
         AuditOut: {
             /** Action */
@@ -344,6 +906,77 @@ export interface components {
             token_type: string;
             user: components["schemas"]["MeOut"];
         };
+        /** BasicIn */
+        BasicIn: {
+            /** City Code */
+            city_code?: string | null;
+            /** Current Country */
+            current_country: string;
+            /**
+             * Date Of Birth
+             * Format: date
+             */
+            date_of_birth: string;
+            /** Display Name */
+            display_name: string;
+            /** District Code */
+            district_code?: string | null;
+            gender: components["schemas"]["Gender"];
+            /** Has Children */
+            has_children?: boolean | null;
+            /** Height Cm */
+            height_cm: number;
+            marital_status: components["schemas"]["MaritalStatus"];
+            mother_tongue: components["schemas"]["app__profiles__options__Language"];
+            /** State Code */
+            state_code?: string | null;
+            /** Subject Name */
+            subject_name: string;
+        };
+        /** CareerIn */
+        CareerIn: {
+            /** Employer */
+            employer?: string | null;
+            employment_type: components["schemas"]["EmploymentType"];
+            income_band?: components["schemas"]["IncomeBand"] | null;
+            industry?: components["schemas"]["Industry"] | null;
+            /** Occupation */
+            occupation?: string | null;
+            /** @default members */
+            visibility: components["schemas"]["Visibility"];
+            /** Work City Code */
+            work_city_code?: string | null;
+        };
+        /** CommunityIn */
+        CommunityIn: {
+            /** Sub Community Code */
+            sub_community_code?: string | null;
+            /** @default members */
+            visibility: components["schemas"]["Visibility"];
+        };
+        /** CommunityOut */
+        CommunityOut: {
+            /** Code */
+            code: string;
+            /** Label En */
+            label_en: string;
+            /** Label Ta */
+            label_ta: string;
+            /** Parent Code */
+            parent_code: string | null;
+            type: components["schemas"]["TaxonomyType"];
+        };
+        /** CompletionOut */
+        CompletionOut: {
+            /** Missing Required */
+            missing_required: string[];
+            /** Percent */
+            percent: number;
+            /** Sections */
+            sections: {
+                [key: string]: boolean;
+            };
+        };
         /** ConsentChoices */
         ConsentChoices: {
             /** Marketing */
@@ -388,6 +1021,94 @@ export interface components {
          * @enum {string}
          */
         ConsentType: "terms" | "privacy" | "marketing" | "whatsapp";
+        /**
+         * CreatedFor
+         * @enum {string}
+         */
+        CreatedFor: "self" | "son" | "daughter" | "brother" | "sister" | "relative" | "friend";
+        /** DelegateSummary */
+        DelegateSummary: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Me */
+            is_me: boolean;
+            /** Phone Masked */
+            phone_masked: string | null;
+            /** Relationship */
+            relationship: string;
+            /** Scopes */
+            scopes: components["schemas"]["Scope"][];
+            /** Status */
+            status: string;
+        };
+        /**
+         * DelegationKind
+         * @enum {string}
+         */
+        DelegationKind: "subject_consent" | "helper_invite";
+        /**
+         * Diet
+         * @enum {string}
+         */
+        Diet: "vegetarian" | "non_vegetarian" | "eggetarian" | "vegan";
+        /** EducationIn */
+        EducationIn: {
+            field_of_study?: components["schemas"]["FieldOfStudy"] | null;
+            /** Institution */
+            institution?: string | null;
+            qualification: components["schemas"]["EducationLevel"];
+            /** @default members */
+            visibility: components["schemas"]["Visibility"];
+            /** Year Completed */
+            year_completed?: number | null;
+        };
+        /**
+         * EducationLevel
+         * @enum {string}
+         */
+        EducationLevel: "secondary" | "higher_secondary" | "diploma" | "bachelors" | "masters" | "doctorate" | "other";
+        /**
+         * EmploymentType
+         * @enum {string}
+         */
+        EmploymentType: "private" | "government" | "business" | "self_employed" | "not_working" | "student";
+        /** FamilyIn */
+        FamilyIn: {
+            /** Family Description */
+            family_description?: string | null;
+            family_type?: components["schemas"]["FamilyType"] | null;
+            family_values?: components["schemas"]["FamilyValues"] | null;
+            /** Father Occupation */
+            father_occupation?: string | null;
+            /** Mother Occupation */
+            mother_occupation?: string | null;
+            /** Native District Code */
+            native_district_code?: string | null;
+            /** Siblings Count */
+            siblings_count?: number | null;
+            /** Siblings Married */
+            siblings_married?: number | null;
+            /** @default members */
+            visibility: components["schemas"]["Visibility"];
+        };
+        /**
+         * FamilyType
+         * @enum {string}
+         */
+        FamilyType: "nuclear" | "joint";
+        /**
+         * FamilyValues
+         * @enum {string}
+         */
+        FamilyValues: "traditional" | "moderate" | "liberal";
+        /**
+         * FieldOfStudy
+         * @enum {string}
+         */
+        FieldOfStudy: "engineering" | "medicine" | "science" | "commerce" | "arts" | "law" | "management" | "computer_applications" | "education" | "other";
         /** FlagOut */
         FlagOut: {
             /** Config */
@@ -419,16 +1140,115 @@ export interface components {
             /** Rollout Percent */
             rollout_percent?: number | null;
         };
+        /**
+         * Gender
+         * @enum {string}
+         */
+        Gender: "male" | "female";
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
         /**
-         * Language
+         * Habit
          * @enum {string}
          */
-        Language: "en" | "ta" | "ta-Latn";
+        Habit: "no" | "occasionally" | "yes";
+        /** HelperInviteIn */
+        HelperInviteIn: {
+            /** Phone */
+            phone: string;
+            relationship: components["schemas"]["CreatedFor"];
+            /** Scopes */
+            scopes: components["schemas"]["Scope"][];
+        };
+        /** HistoryOut */
+        HistoryOut: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** From Status */
+            from_status: string | null;
+            /** Note */
+            note: string | null;
+            /** Reason Code */
+            reason_code: string | null;
+            /** To Status */
+            to_status: string;
+        };
+        /**
+         * IncomeBand
+         * @description Annual income in INR. Optional and privacy-controlled (PRD §4.2).
+         * @enum {string}
+         */
+        IncomeBand: "lt_3l" | "3_5l" | "5_10l" | "10_20l" | "20_50l" | "gt_50l";
+        /**
+         * Industry
+         * @enum {string}
+         */
+        Industry: "it_software" | "healthcare" | "education" | "finance" | "government" | "manufacturing" | "agriculture" | "trade" | "other";
+        /**
+         * Interest
+         * @enum {string}
+         */
+        Interest: "music" | "reading" | "travel" | "cooking" | "sports" | "movies" | "art" | "temple_visits" | "yoga" | "gardening" | "photography" | "dance";
+        /** InvitationOut */
+        InvitationOut: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Invited At
+             * Format: date-time
+             */
+            invited_at: string;
+            /** Invited By Phone Masked */
+            invited_by_phone_masked: string | null;
+            kind: components["schemas"]["DelegationKind"];
+            /** Profile Display Name */
+            profile_display_name: string | null;
+            /** Proposed Scopes */
+            proposed_scopes: components["schemas"]["Scope"][];
+            /** Relationship */
+            relationship: string;
+            /** Subject Name */
+            subject_name: string;
+        };
+        /** LifestyleIn */
+        LifestyleIn: {
+            /** About Me */
+            about_me?: string | null;
+            diet?: components["schemas"]["Diet"] | null;
+            drinking?: components["schemas"]["Habit"] | null;
+            /** Interests */
+            interests?: components["schemas"]["Interest"][];
+            /** Languages */
+            languages?: components["schemas"]["app__profiles__options__Language"][];
+            physical_status?: components["schemas"]["PhysicalStatus"] | null;
+            smoking?: components["schemas"]["Habit"] | null;
+        };
+        /** LocationOut */
+        LocationOut: {
+            /** Code */
+            code: string;
+            /** Name En */
+            name_en: string;
+            /** Name Ta */
+            name_ta: string;
+            /** Parent Code */
+            parent_code: string | null;
+            type: components["schemas"]["LocationType"];
+        };
+        /**
+         * LocationType
+         * @enum {string}
+         */
+        LocationType: "country" | "state" | "district" | "city";
         /** LogoutIn */
         LogoutIn: {
             /**
@@ -437,6 +1257,11 @@ export interface components {
              */
             all_devices: boolean;
         };
+        /**
+         * MaritalStatus
+         * @enum {string}
+         */
+        MaritalStatus: "never_married" | "divorced" | "widowed" | "awaiting_divorce";
         /** MeOut */
         MeOut: {
             /**
@@ -457,7 +1282,7 @@ export interface components {
             phone_masked: string;
             /** Phone Verified */
             phone_verified: boolean;
-            preferred_language: components["schemas"]["Language"];
+            preferred_language: components["schemas"]["app__users__models__Language"];
             /** Roles */
             roles: string[];
             /** Status */
@@ -467,7 +1292,71 @@ export interface components {
         MePatchIn: {
             /** Email */
             email?: string | null;
-            preferred_language?: components["schemas"]["Language"] | null;
+            preferred_language?: components["schemas"]["app__users__models__Language"] | null;
+        };
+        /**
+         * MemberProfileOut
+         * @description What another member sees. Never includes DOB, phone, full name or hidden fields.
+         */
+        MemberProfileOut: {
+            /** Age */
+            age: number | null;
+            city: components["schemas"]["PlaceOut"] | null;
+            community_label: components["schemas"]["PlaceOut"] | null;
+            created_for: components["schemas"]["CreatedFor"];
+            /** Current Country */
+            current_country: string | null;
+            /** Display Name */
+            display_name: string;
+            district: components["schemas"]["PlaceOut"] | null;
+            /** Employer */
+            employer: string | null;
+            employment_type: components["schemas"]["EmploymentType"] | null;
+            family: components["schemas"]["FamilyIn"] | null;
+            field_of_study: components["schemas"]["FieldOfStudy"] | null;
+            gender: components["schemas"]["Gender"] | null;
+            /** Has Children */
+            has_children: boolean | null;
+            /** Height Cm */
+            height_cm: number | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            income_band: components["schemas"]["IncomeBand"] | null;
+            industry: components["schemas"]["Industry"] | null;
+            /** Institution */
+            institution: string | null;
+            lifestyle: components["schemas"]["LifestyleIn"] | null;
+            marital_status: components["schemas"]["MaritalStatus"] | null;
+            mother_tongue: components["schemas"]["app__profiles__options__Language"] | null;
+            native_district: components["schemas"]["PlaceOut"] | null;
+            /** Occupation */
+            occupation: string | null;
+            /** Photos */
+            photos: components["schemas"]["PhotoOut"][];
+            qualification: components["schemas"]["EducationLevel"] | null;
+            state: components["schemas"]["PlaceOut"] | null;
+            sub_community_label: components["schemas"]["PlaceOut"] | null;
+        };
+        /**
+         * ModerationStatus
+         * @enum {string}
+         */
+        ModerationStatus: "pending" | "approved" | "rejected";
+        /** OptionsOut */
+        OptionsOut: {
+            /** Max Height Cm */
+            max_height_cm: number;
+            /** Min Age */
+            min_age: number;
+            /** Min Height Cm */
+            min_height_cm: number;
+            /** Options */
+            options: {
+                [key: string]: string[];
+            };
         };
         /** OtpChallengeOut */
         OtpChallengeOut: {
@@ -485,7 +1374,7 @@ export interface components {
         /** OtpRequestIn */
         OtpRequestIn: {
             /** @default en */
-            language: components["schemas"]["Language"];
+            language: components["schemas"]["app__users__models__Language"];
             /**
              * Phone
              * @example +919876543210
@@ -508,12 +1397,332 @@ export interface components {
             device_id?: string | null;
             /** Device Label */
             device_label?: string | null;
-            language?: components["schemas"]["Language"] | null;
+            language?: components["schemas"]["app__users__models__Language"] | null;
+        };
+        /** PhotoConfirmIn */
+        PhotoConfirmIn: {
+            /** Upload Id */
+            upload_id: string;
+            /** @default members */
+            visibility: components["schemas"]["Visibility"];
+        };
+        /** PhotoDecisionIn */
+        PhotoDecisionIn: {
+            /**
+             * Decision
+             * @enum {string}
+             */
+            decision: "approve" | "reject";
+            reason_code?: components["schemas"]["ReviewReason"] | null;
+        };
+        /** PhotoOut */
+        PhotoOut: {
+            /** Full Url */
+            full_url: string;
+            /** Height */
+            height: number;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Primary */
+            is_primary: boolean;
+            moderation_reason?: components["schemas"]["ReviewReason"] | null;
+            moderation_status: components["schemas"]["ModerationStatus"];
+            /** Thumb Url */
+            thumb_url: string;
+            visibility: components["schemas"]["Visibility"];
+            /** Width */
+            width: number;
+        };
+        /** PhotoPatchIn */
+        PhotoPatchIn: {
+            /** Is Primary */
+            is_primary?: true | null;
+            /** Sort Order */
+            sort_order?: number | null;
+            visibility?: components["schemas"]["Visibility"] | null;
+        };
+        /**
+         * PhysicalStatus
+         * @enum {string}
+         */
+        PhysicalStatus: "normal" | "physically_challenged";
+        /** PlaceOut */
+        PlaceOut: {
+            /** Code */
+            code: string;
+            /** Name En */
+            name_en: string;
+            /** Name Ta */
+            name_ta: string;
+        };
+        /** PreferenceIn */
+        PreferenceIn: {
+            /** Age Max */
+            age_max?: number | null;
+            /** Age Min */
+            age_min?: number | null;
+            /** Countries */
+            countries?: string[];
+            /** Diets */
+            diets?: components["schemas"]["Diet"][];
+            /** District Codes */
+            district_codes?: string[];
+            /** Education Levels */
+            education_levels?: components["schemas"]["EducationLevel"][];
+            /** Employment Types */
+            employment_types?: components["schemas"]["EmploymentType"][];
+            /** Height Max Cm */
+            height_max_cm?: number | null;
+            /** Height Min Cm */
+            height_min_cm?: number | null;
+            /** Income Bands */
+            income_bands?: components["schemas"]["IncomeBand"][];
+            /**
+             * Is Default
+             * @default true
+             */
+            is_default: boolean;
+            /** Marital Statuses */
+            marital_statuses?: components["schemas"]["MaritalStatus"][];
+            /** Mother Tongues */
+            mother_tongues?: components["schemas"]["app__profiles__options__Language"][];
+            /** Must Have */
+            must_have?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
+            /**
+             * Name
+             * @default Default
+             */
+            name: string;
+            /** Preferred */
+            preferred?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
+            /** Sub Community Codes */
+            sub_community_codes?: string[];
+        };
+        /** PreferenceOut */
+        PreferenceOut: {
+            /** Age Max */
+            age_max?: number | null;
+            /** Age Min */
+            age_min?: number | null;
+            /** Countries */
+            countries?: string[];
+            /** Diets */
+            diets?: components["schemas"]["Diet"][];
+            /** District Codes */
+            district_codes?: string[];
+            /** Education Levels */
+            education_levels?: components["schemas"]["EducationLevel"][];
+            /** Employment Types */
+            employment_types?: components["schemas"]["EmploymentType"][];
+            /** Flexible */
+            flexible: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
+            /** Height Max Cm */
+            height_max_cm?: number | null;
+            /** Height Min Cm */
+            height_min_cm?: number | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Income Bands */
+            income_bands?: components["schemas"]["IncomeBand"][];
+            /**
+             * Is Default
+             * @default true
+             */
+            is_default: boolean;
+            /** Marital Statuses */
+            marital_statuses?: components["schemas"]["MaritalStatus"][];
+            /** Mother Tongues */
+            mother_tongues?: components["schemas"]["app__profiles__options__Language"][];
+            /** Must Have */
+            must_have?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
+            /**
+             * Name
+             * @default Default
+             */
+            name: string;
+            /** Preferred */
+            preferred?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
+            /** Sub Community Codes */
+            sub_community_codes?: string[];
+        };
+        /** ProfileCreateIn */
+        ProfileCreateIn: {
+            created_for: components["schemas"]["CreatedFor"];
+            gender?: components["schemas"]["Gender"] | null;
+            /** Subject Name */
+            subject_name: string;
+            /** Subject Phone */
+            subject_phone?: string | null;
+        };
+        /** ProfileDecisionIn */
+        ProfileDecisionIn: {
+            /**
+             * Decision
+             * @enum {string}
+             */
+            decision: "approve" | "request_changes";
+            /** Note */
+            note?: string | null;
+            /** Photos */
+            photos?: {
+                [key: string]: "approve" | "reject";
+            };
+            reason_code?: components["schemas"]["ReviewReason"] | null;
+        };
+        /**
+         * ProfileManageOut
+         * @description Everything the owner (or a permitted helper) can see and edit.
+         */
+        ProfileManageOut: {
+            /** Age */
+            age: number | null;
+            /** Approved At */
+            approved_at: string | null;
+            career: components["schemas"]["CareerIn"] | null;
+            city: components["schemas"]["PlaceOut"] | null;
+            community: components["schemas"]["CommunityIn"] | null;
+            community_label: components["schemas"]["PlaceOut"] | null;
+            completion: components["schemas"]["CompletionOut"];
+            created_for: components["schemas"]["CreatedFor"];
+            /** Current Country */
+            current_country: string | null;
+            /** Date Of Birth */
+            date_of_birth: string | null;
+            /** Display Name */
+            display_name: string | null;
+            district: components["schemas"]["PlaceOut"] | null;
+            education: components["schemas"]["EducationIn"] | null;
+            family: components["schemas"]["FamilyIn"] | null;
+            gender: components["schemas"]["Gender"] | null;
+            /** Has Children */
+            has_children: boolean | null;
+            /** Height Cm */
+            height_cm: number | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            lifestyle: components["schemas"]["LifestyleIn"] | null;
+            marital_status: components["schemas"]["MaritalStatus"] | null;
+            mother_tongue: components["schemas"]["app__profiles__options__Language"] | null;
+            /**
+             * My Role
+             * @enum {string}
+             */
+            my_role: "owner" | "delegate" | "creator_pending" | "staff";
+            /** My Scopes */
+            my_scopes: components["schemas"]["Scope"][];
+            native_district: components["schemas"]["PlaceOut"] | null;
+            /** Photos */
+            photos: components["schemas"]["PhotoOut"][];
+            state: components["schemas"]["PlaceOut"] | null;
+            status: components["schemas"]["ProfileStatus"];
+            /** Status Note */
+            status_note: string | null;
+            /** Status Reason Code */
+            status_reason_code: components["schemas"]["ReviewReason"] | string | null;
+            /** Subject Consent Pending */
+            subject_consent_pending: boolean;
+            /** Subject Name */
+            subject_name: string;
+            /** Submitted At */
+            submitted_at: string | null;
+            visibility: components["schemas"]["ProfileVisibility"];
+            work_city: components["schemas"]["PlaceOut"] | null;
+        };
+        /**
+         * ProfileStatus
+         * @enum {string}
+         */
+        ProfileStatus: "draft" | "submitted" | "approved" | "needs_changes" | "suspended" | "archived";
+        /** ProfileSummaryOut */
+        ProfileSummaryOut: {
+            /** Completion Percent */
+            completion_percent: number;
+            created_for: components["schemas"]["CreatedFor"];
+            /** Display Name */
+            display_name: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * My Role
+             * @enum {string}
+             */
+            my_role: "owner" | "delegate" | "creator_pending";
+            /** Primary Photo Url */
+            primary_photo_url: string | null;
+            status: components["schemas"]["ProfileStatus"];
+            /** Subject Consent Pending */
+            subject_consent_pending: boolean;
+            /** Subject Name */
+            subject_name: string;
+            visibility: components["schemas"]["ProfileVisibility"];
+        };
+        /**
+         * ProfileVisibility
+         * @enum {string}
+         */
+        ProfileVisibility: "discoverable" | "paused";
+        /** QueueItem */
+        QueueItem: {
+            /** Completion Percent */
+            completion_percent: number;
+            /** Created For */
+            created_for: string;
+            /** Display Name */
+            display_name: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Pending Photos */
+            pending_photos: number;
+            status: components["schemas"]["ProfileStatus"];
+            /** Status Reason Code */
+            status_reason_code: string | null;
+            /** Submitted At */
+            submitted_at: string | null;
+        };
+        /** QueuePage */
+        QueuePage: {
+            /** Items */
+            items: components["schemas"]["QueueItem"][];
+            /** Next Cursor */
+            next_cursor: number | null;
+            /** Total */
+            total: number;
         };
         /** RefreshIn */
         RefreshIn: {
             /** Refresh Token */
             refresh_token: string;
+        };
+        /**
+         * ReviewReason
+         * @description Moderator reason codes shown (translated) to the member.
+         * @enum {string}
+         */
+        ReviewReason: "incomplete" | "photo_unclear" | "photo_not_person" | "contact_in_text" | "inappropriate_text" | "inconsistent_details" | "community_eligibility" | "other";
+        /**
+         * Scope
+         * @enum {string}
+         */
+        Scope: "edit_profile" | "manage_photos" | "manage_preferences";
+        /** ScopesIn */
+        ScopesIn: {
+            /** Scopes */
+            scopes: components["schemas"]["Scope"][];
         };
         /** SessionOut */
         SessionOut: {
@@ -539,6 +1748,11 @@ export interface components {
             /** Last Used At */
             last_used_at: string | null;
         };
+        /**
+         * TaxonomyType
+         * @enum {string}
+         */
+        TaxonomyType: "community" | "sub_community";
         /** TokenPairOut */
         TokenPairOut: {
             /** Access Token */
@@ -558,6 +1772,31 @@ export interface components {
              */
             token_type: string;
         };
+        /** UploadUrlIn */
+        UploadUrlIn: {
+            /**
+             * Content Type
+             * @enum {string}
+             */
+            content_type: "image/jpeg" | "image/png" | "image/webp";
+            /** Size Bytes */
+            size_bytes: number;
+        };
+        /** UploadUrlOut */
+        UploadUrlOut: {
+            /** Expires In */
+            expires_in: number;
+            /** Fields */
+            fields: {
+                [key: string]: string;
+            };
+            /** Max Bytes */
+            max_bytes: number;
+            /** Upload Id */
+            upload_id: string;
+            /** Url */
+            url: string;
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -571,6 +1810,22 @@ export interface components {
             /** Error Type */
             type: string;
         };
+        /**
+         * Visibility
+         * @description Who can see a field or photo, besides the owner and their delegates.
+         * @enum {string}
+         */
+        Visibility: "members" | "connections" | "hidden";
+        /**
+         * Language
+         * @enum {string}
+         */
+        app__profiles__options__Language: "tamil" | "english" | "telugu" | "kannada" | "malayalam" | "hindi" | "saurashtra" | "other";
+        /**
+         * Language
+         * @enum {string}
+         */
+        app__users__models__Language: "en" | "ta" | "ta-Latn";
     };
     responses: never;
     parameters: never;
@@ -657,6 +1912,139 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["FlagOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_photo_api_v1_admin_photos__photo_id__decision_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                photo_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhotoDecisionIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    queue_api_v1_admin_profiles_get: {
+        parameters: {
+            query?: {
+                status?: components["schemas"]["ProfileStatus"];
+                /** @description Return items after this id */
+                cursor?: number | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QueuePage"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    review_detail_api_v1_admin_profiles__profile_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminProfileOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_profile_api_v1_admin_profiles__profile_id__decision_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfileDecisionIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminProfileOut"];
                 };
             };
             /** @description Validation Error */
@@ -940,6 +2328,1012 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_api_v1_delegates__delegation_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                delegation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_scopes_api_v1_delegates__delegation_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                delegation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ScopesIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DelegateSummary"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    my_invitations_api_v1_delegations_invitations_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitationOut"][];
+                };
+            };
+        };
+    };
+    accept_invitation_api_v1_delegations__delegation_id__accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                delegation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AcceptIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: string;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decline_invitation_api_v1_delegations__delegation_id__decline_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                delegation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_photo_api_v1_media_photos__photo_id__get: {
+        parameters: {
+            query?: {
+                variant?: "thumb" | "full";
+            };
+            header?: never;
+            path: {
+                photo_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "image/jpeg": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_preference_api_v1_preferences__preference_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                preference_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreferenceIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreferenceOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_preference_api_v1_preferences__preference_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                preference_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_profile_api_v1_profiles_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfileCreateIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_managed_api_v1_profiles_managed_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileSummaryOut"][];
+                };
+            };
+        };
+    };
+    get_profile_api_v1_profiles__profile_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"] | components["schemas"]["MemberProfileOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_basic_api_v1_profiles__profile_id__basic_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BasicIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_career_api_v1_profiles__profile_id__career_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CareerIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_community_api_v1_profiles__profile_id__community_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CommunityIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_delegates_api_v1_profiles__profile_id__delegates_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DelegateSummary"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_helper_api_v1_profiles__profile_id__delegates_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HelperInviteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DelegateSummary"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_education_api_v1_profiles__profile_id__education_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EducationIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_family_api_v1_profiles__profile_id__family_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FamilyIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_lifestyle_api_v1_profiles__profile_id__lifestyle_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LifestyleIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    pause_api_v1_profiles__profile_id__pause_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    confirm_photo_api_v1_profiles__profile_id__photos_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhotoConfirmIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_url_api_v1_profiles__profile_id__photos_upload_url_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UploadUrlIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UploadUrlOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_photo_api_v1_profiles__profile_id__photos__photo_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+                photo_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_photo_api_v1_profiles__profile_id__photos__photo_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+                photo_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhotoPatchIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhotoOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_preferences_api_v1_profiles__profile_id__preferences_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreferenceOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_preference_api_v1_profiles__profile_id__preferences_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PreferenceIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreferenceOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_api_v1_profiles__profile_id__preview_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemberProfileOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resume_api_v1_profiles__profile_id__resume_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    submit_api_v1_profiles__profile_id__submit_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileManageOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    community_api_v1_reference_community_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CommunityOut"][];
+                };
+            };
+        };
+    };
+    locations_api_v1_reference_locations_get: {
+        parameters: {
+            query?: {
+                /** @description Parent location code */
+                parent?: string | null;
+                type?: components["schemas"]["LocationType"] | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LocationOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    options_api_v1_reference_options_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OptionsOut"];
                 };
             };
         };

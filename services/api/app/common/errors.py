@@ -83,8 +83,11 @@ def install_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(RequestValidationError)
     async def _validation(_: Request, exc: RequestValidationError) -> JSONResponse:
         fields = [{"loc": list(e["loc"]), "type": e["type"], "msg": e["msg"]} for e in exc.errors()]
+        # Promote domain-specific validation errors to the top-level code clients switch on.
+        promoted = {"contact_details_not_allowed"}
+        code = next((f["type"] for f in fields if f["type"] in promoted), "validation_error")
         return JSONResponse(
-            _body("validation_error", "Some fields are invalid.", {"fields": fields}),
+            _body(code, "Some fields are invalid.", {"fields": fields}),
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
         )
 
