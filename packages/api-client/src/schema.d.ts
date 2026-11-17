@@ -927,7 +927,7 @@ export interface components {
             /** Height Cm */
             height_cm: number;
             marital_status: components["schemas"]["MaritalStatus"];
-            mother_tongue: components["schemas"]["app__profiles__options__Language"];
+            mother_tongue: components["schemas"]["SpokenLanguage"];
             /** State Code */
             state_code?: string | null;
             /** Subject Name */
@@ -1219,6 +1219,11 @@ export interface components {
             /** Subject Name */
             subject_name: string;
         };
+        /**
+         * Language
+         * @enum {string}
+         */
+        Language: "en" | "ta" | "ta-Latn";
         /** LifestyleIn */
         LifestyleIn: {
             /** About Me */
@@ -1228,7 +1233,7 @@ export interface components {
             /** Interests */
             interests?: components["schemas"]["Interest"][];
             /** Languages */
-            languages?: components["schemas"]["app__profiles__options__Language"][];
+            languages?: components["schemas"]["SpokenLanguage"][];
             physical_status?: components["schemas"]["PhysicalStatus"] | null;
             smoking?: components["schemas"]["Habit"] | null;
         };
@@ -1282,7 +1287,7 @@ export interface components {
             phone_masked: string;
             /** Phone Verified */
             phone_verified: boolean;
-            preferred_language: components["schemas"]["app__users__models__Language"];
+            preferred_language: components["schemas"]["Language"];
             /** Roles */
             roles: string[];
             /** Status */
@@ -1292,7 +1297,7 @@ export interface components {
         MePatchIn: {
             /** Email */
             email?: string | null;
-            preferred_language?: components["schemas"]["app__users__models__Language"] | null;
+            preferred_language?: components["schemas"]["Language"] | null;
         };
         /**
          * MemberProfileOut
@@ -1330,7 +1335,7 @@ export interface components {
             institution: string | null;
             lifestyle: components["schemas"]["LifestyleIn"] | null;
             marital_status: components["schemas"]["MaritalStatus"] | null;
-            mother_tongue: components["schemas"]["app__profiles__options__Language"] | null;
+            mother_tongue: components["schemas"]["SpokenLanguage"] | null;
             native_district: components["schemas"]["PlaceOut"] | null;
             /** Occupation */
             occupation: string | null;
@@ -1374,7 +1379,7 @@ export interface components {
         /** OtpRequestIn */
         OtpRequestIn: {
             /** @default en */
-            language: components["schemas"]["app__users__models__Language"];
+            language: components["schemas"]["Language"];
             /**
              * Phone
              * @example +919876543210
@@ -1397,7 +1402,7 @@ export interface components {
             device_id?: string | null;
             /** Device Label */
             device_label?: string | null;
-            language?: components["schemas"]["app__users__models__Language"] | null;
+            language?: components["schemas"]["Language"] | null;
         };
         /** PhotoConfirmIn */
         PhotoConfirmIn: {
@@ -1488,7 +1493,7 @@ export interface components {
             /** Marital Statuses */
             marital_statuses?: components["schemas"]["MaritalStatus"][];
             /** Mother Tongues */
-            mother_tongues?: components["schemas"]["app__profiles__options__Language"][];
+            mother_tongues?: components["schemas"]["SpokenLanguage"][];
             /** Must Have */
             must_have?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
             /**
@@ -1538,7 +1543,7 @@ export interface components {
             /** Marital Statuses */
             marital_statuses?: components["schemas"]["MaritalStatus"][];
             /** Mother Tongues */
-            mother_tongues?: components["schemas"]["app__profiles__options__Language"][];
+            mother_tongues?: components["schemas"]["SpokenLanguage"][];
             /** Must Have */
             must_have?: ("age" | "height" | "marital_status" | "location" | "education" | "employment" | "income" | "diet" | "mother_tongue" | "community")[];
             /**
@@ -1611,7 +1616,7 @@ export interface components {
             id: string;
             lifestyle: components["schemas"]["LifestyleIn"] | null;
             marital_status: components["schemas"]["MaritalStatus"] | null;
-            mother_tongue: components["schemas"]["app__profiles__options__Language"] | null;
+            mother_tongue: components["schemas"]["SpokenLanguage"] | null;
             /**
              * My Role
              * @enum {string}
@@ -1749,6 +1754,11 @@ export interface components {
             last_used_at: string | null;
         };
         /**
+         * SpokenLanguage
+         * @enum {string}
+         */
+        SpokenLanguage: "tamil" | "english" | "telugu" | "kannada" | "malayalam" | "hindi" | "saurashtra" | "other";
+        /**
          * TaxonomyType
          * @enum {string}
          */
@@ -1816,16 +1826,6 @@ export interface components {
          * @enum {string}
          */
         Visibility: "members" | "connections" | "hidden";
-        /**
-         * Language
-         * @enum {string}
-         */
-        app__profiles__options__Language: "tamil" | "english" | "telugu" | "kannada" | "malayalam" | "hindi" | "saurashtra" | "other";
-        /**
-         * Language
-         * @enum {string}
-         */
-        app__users__models__Language: "en" | "ta" | "ta-Latn";
     };
     responses: never;
     parameters: never;

@@ -22,8 +22,8 @@ from app.profiles.options import (
     EducationLevel,
     EmploymentType,
     IncomeBand,
-    Language,
     MaritalStatus,
+    SpokenLanguage,
 )
 from app.reference.models import CommunityTaxonomy, Location, LocationType, TaxonomyType
 from app.security.deps import DB, Auth, Meta
@@ -64,7 +64,7 @@ class PreferenceIn(BaseModel):
     employment_types: list[EmploymentType] = Field(default_factory=list, max_length=10)
     income_bands: list[IncomeBand] = Field(default_factory=list, max_length=10)
     diets: list[Diet] = Field(default_factory=list, max_length=10)
-    mother_tongues: list[Language] = Field(default_factory=list, max_length=10)
+    mother_tongues: list[SpokenLanguage] = Field(default_factory=list, max_length=10)
     sub_community_codes: list[Code] = Field(default_factory=list, max_length=20)
     must_have: list[Criterion] = Field(default_factory=list)
     preferred: list[Criterion] = Field(default_factory=list)

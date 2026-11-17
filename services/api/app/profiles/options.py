@@ -35,7 +35,7 @@ class PhysicalStatus(StrEnum):
     PHYSICALLY_CHALLENGED = "physically_challenged"
 
 
-class Language(StrEnum):
+class SpokenLanguage(StrEnum):
     TAMIL = "tamil"
     ENGLISH = "english"
     TELUGU = "telugu"
@@ -186,7 +186,7 @@ ALL_OPTIONS: dict[str, type[StrEnum]] = {
     "gender": Gender,
     "marital_status": MaritalStatus,
     "physical_status": PhysicalStatus,
-    "language": Language,
+    "language": SpokenLanguage,
     "diet": Diet,
     "habit": Habit,
     "family_type": FamilyType,

@@ -288,7 +288,7 @@
             "$ref": "#/components/schemas/MaritalStatus"
           },
           "mother_tongue": {
-            "$ref": "#/components/schemas/app__profiles__options__Language"
+            "$ref": "#/components/schemas/SpokenLanguage"
           },
           "state_code": {
             "anyOf": [
@@ -1182,6 +1182,15 @@
         "title": "InvitationOut",
         "type": "object"
       },
+      "Language": {
+        "enum": [
+          "en",
+          "ta",
+          "ta-Latn"
+        ],
+        "title": "Language",
+        "type": "string"
+      },
       "LifestyleIn": {
         "properties": {
           "about_me": {
@@ -1226,7 +1235,7 @@
           },
           "languages": {
             "items": {
-              "$ref": "#/components/schemas/app__profiles__options__Language"
+              "$ref": "#/components/schemas/SpokenLanguage"
             },
             "maxItems": 8,
             "title": "Languages",
@@ -1362,7 +1371,7 @@
             "type": "boolean"
           },
           "preferred_language": {
-            "$ref": "#/components/schemas/app__users__models__Language"
+            "$ref": "#/components/schemas/Language"
           },
           "roles": {
             "items": {
@@ -1407,7 +1416,7 @@
           "preferred_language": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/app__users__models__Language"
+                "$ref": "#/components/schemas/Language"
               },
               {
                 "type": "null"
@@ -1612,7 +1621,7 @@
           "mother_tongue": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/app__profiles__options__Language"
+                "$ref": "#/components/schemas/SpokenLanguage"
               },
               {
                 "type": "null"
@@ -1795,7 +1804,7 @@
       "OtpRequestIn": {
         "properties": {
           "language": {
-            "$ref": "#/components/schemas/app__users__models__Language",
+            "$ref": "#/components/schemas/Language",
             "default": "en"
           },
           "phone": {
@@ -1877,7 +1886,7 @@
           "language": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/app__users__models__Language"
+                "$ref": "#/components/schemas/Language"
               },
               {
                 "type": "null"
@@ -2186,7 +2195,7 @@
           },
           "mother_tongues": {
             "items": {
-              "$ref": "#/components/schemas/app__profiles__options__Language"
+              "$ref": "#/components/schemas/SpokenLanguage"
             },
             "maxItems": 10,
             "title": "Mother Tongues",
@@ -2395,7 +2404,7 @@
           },
           "mother_tongues": {
             "items": {
-              "$ref": "#/components/schemas/app__profiles__options__Language"
+              "$ref": "#/components/schemas/SpokenLanguage"
             },
             "maxItems": 10,
             "title": "Mother Tongues",
@@ -2754,7 +2763,7 @@
           "mother_tongue": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/app__profiles__options__Language"
+                "$ref": "#/components/schemas/SpokenLanguage"
               },
               {
                 "type": "null"
@@ -3216,6 +3225,20 @@
         "title": "SessionOut",
         "type": "object"
       },
+      "SpokenLanguage": {
+        "enum": [
+          "tamil",
+          "english",
+          "telugu",
+          "kannada",
+          "malayalam",
+          "hindi",
+          "saurashtra",
+          "other"
+        ],
+        "title": "SpokenLanguage",
+        "type": "string"
+      },
       "TaxonomyType": {
         "enum": [
           "community",
@@ -3366,29 +3389,6 @@
           "hidden"
         ],
         "title": "Visibility",
-        "type": "string"
-      },
-      "app__profiles__options__Language": {
-        "enum": [
-          "tamil",
-          "english",
-          "telugu",
-          "kannada",
-          "malayalam",
-          "hindi",
-          "saurashtra",
-          "other"
-        ],
-        "title": "Language",
-        "type": "string"
-      },
-      "app__users__models__Language": {
-        "enum": [
-          "en",
-          "ta",
-          "ta-Latn"
-        ],
-        "title": "Language",
         "type": "string"
       }
     },

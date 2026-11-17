@@ -20,13 +20,13 @@ from app.profiles.options import (
     IncomeBand,
     Industry,
     Interest,
-    Language,
     MaritalStatus,
     ModerationStatus,
     PhysicalStatus,
     ProfileStatus,
     ProfileVisibility,
     ReviewReason,
+    SpokenLanguage,
     Visibility,
 )
 
@@ -90,7 +90,7 @@ class BasicIn(BaseModel):
     marital_status: MaritalStatus
     has_children: bool | None = None
     height_cm: int = Field(ge=120, le=220)
-    mother_tongue: Language
+    mother_tongue: SpokenLanguage
     current_country: str = Field(pattern=r"^[A-Z]{2}$")
     state_code: Code | None = None
     district_code: Code | None = None
@@ -135,7 +135,7 @@ class FamilyIn(BaseModel):
 
 class LifestyleIn(BaseModel):
     physical_status: PhysicalStatus | None = None
-    languages: list[Language] = Field(default_factory=list, max_length=8)
+    languages: list[SpokenLanguage] = Field(default_factory=list, max_length=8)
     diet: Diet | None = None
     smoking: Habit | None = None
     drinking: Habit | None = None
@@ -202,7 +202,7 @@ class ProfileManageOut(BaseModel):
     marital_status: MaritalStatus | None
     has_children: bool | None
     height_cm: int | None
-    mother_tongue: Language | None
+    mother_tongue: SpokenLanguage | None
     current_country: str | None
     state: PlaceOut | None
     district: PlaceOut | None
@@ -249,7 +249,7 @@ class MemberProfileOut(BaseModel):
     marital_status: MaritalStatus | None
     has_children: bool | None
     height_cm: int | None
-    mother_tongue: Language | None
+    mother_tongue: SpokenLanguage | None
     current_country: str | None
     state: PlaceOut | None
     district: PlaceOut | None
